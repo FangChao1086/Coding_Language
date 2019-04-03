@@ -29,6 +29,17 @@ for _ in range(m):
     tmp.extend(line)  # 
 ```
 ---
+![3.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/3.PNG)
+```py
+# 输入处理
+n = int(input())
+x, y = [], []
+for i in range(n):
+    _x, _y = list(map(int, input().split()))
+    x.append(_x)
+    y.append(_y)
+```
+---
 
 <span id="extend与append的区别"></span>
 # extend与append的区别
