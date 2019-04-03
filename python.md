@@ -9,7 +9,7 @@
 <span id="输入"></span>
 ## 输入
 ![1.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/1.PNG)  
-```
+```py
 M, N = list(map(int, input().split(',')))
 
 book = []
@@ -19,7 +19,7 @@ for i in range(M):
 ```
 ---
 ![2.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/2.PNG)
-```
+```py
 # 输入处理
 m = int(input())
 
