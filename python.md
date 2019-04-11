@@ -3,6 +3,7 @@
   * [输入](#输入)
 * [extend与append的区别](#extend与append的区别)
 * [浅拷贝与深拷贝](#浅拷贝与深拷贝)
+* [迭代器和生成器](#迭代器和生成器)
 
 <span id="基础"></span>
 # 基础
@@ -48,3 +49,13 @@ for i in range(n):
 <span id="浅拷贝与深拷贝"></span>
 # 浅拷贝与深拷贝
 [浅拷贝与深拷贝](https://www.cnblogs.com/xueli/p/4952063.html)
+
+<span id="迭代器和生成器"></span>
+## 迭代器和生成器
+[参考链接：迭代器和生成器](http://www.runoob.com/python3/python3-iterator-generator.html)  
+* 迭代器：一个可以记住遍历的位置的对象。
+  * 基本方法：iter() 和 next()  
+* 生成器：一个返回迭代器的函数，只能用于迭代操作
+  1. 运行时，每次遇到**yield**时函数会暂停并保存当前所有的运行信息，返回 yield 的值
+  2. 在下一次执行next()方法时从当前位置继续运行。
+
