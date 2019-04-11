@@ -1,9 +1,17 @@
 # python
+* [python3新特性](#python3新特性)
 * [基础](#基础)
   * [输入](#输入)
 * [extend与append的区别](#extend与append的区别)
 * [浅拷贝与深拷贝](#浅拷贝与深拷贝)
 * [迭代器和生成器](#迭代器和生成器)
+
+<span id="python3新特性"></span>
+## python3新特性
+* pathlib模块
+* 格式化字符串变量
+* 统一编码支持中文字符
+* Python 3.5 将支持 Async/Await 异步编程
 
 <span id="基础"></span>
 # 基础
