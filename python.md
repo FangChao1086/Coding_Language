@@ -2,6 +2,7 @@
 * [python3新特性](#python3新特性)
 * [基础](#基础)
   * [输入](#输入)
+* [re.match与re.search的区别](#re.match与re.search的区别)
 * [extend与append的区别](#extend与append的区别)
 * [浅拷贝与深拷贝](#浅拷贝与深拷贝)
 * [迭代器和生成器](#迭代器和生成器)
@@ -49,6 +50,12 @@ for i in range(n):
     y.append(_y)
 ```
 ---
+
+<span id="re.match与re.search的区别"></span>
+## re.match与re.search的区别
+[参考链接：re.match与re.search的区别](http://www.runoob.com/python3/python3-reg-expressions.html)  
+* re.match：从字符串的起始位置匹配，起始位置匹配不成功就返回None
+* re.search：对整个字符串进行匹配
 
 <span id="extend与append的区别"></span>
 # extend与append的区别
