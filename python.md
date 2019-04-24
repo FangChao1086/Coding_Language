@@ -1,4 +1,7 @@
 # python
+
+[参考链接：python知识点详细](https://github.com/taizilongxu/interview_python#20-%E9%97%AD%E5%8C%85)   
+
 * [python3新特性](#python3新特性)
 * [基础](#基础)
   * [输入](#输入)
