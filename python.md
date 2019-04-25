@@ -5,6 +5,7 @@
 * [python3新特性](#python3新特性)
 * [基础](#基础)
   * [输入](#输入)
+* [\*args与\*\*kwargs的区别](#\*args与\*\*kwargs的区别)
 * [re.match与re.search的区别](#re.match与re.search的区别)
 * [extend与append的区别](#extend与append的区别)
 * [浅拷贝与深拷贝](#浅拷贝与深拷贝)
@@ -53,6 +54,12 @@ for i in range(n):
     y.append(_y)
 ```
 ---
+
+<span id="\*args与\*\*kwargs的区别"></span>
+## \*args与\*\*kwargs的区别 
+[参考链接：\*args与\*\*kwargs的区别](https://www.cnblogs.com/yunguoxiaoqiao/p/7626992.html)
+* \*args：将关键字参数打包成**tuple**给函数体使用  
+* \*\*kwargs：将关键字参数打包成**dict**给函数体使用  
 
 <span id="re.match与re.search的区别"></span>
 ## re.match与re.search的区别
