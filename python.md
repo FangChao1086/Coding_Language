@@ -10,6 +10,7 @@
 * [extend与append的区别](#extend与append的区别)
 * [浅拷贝与深拷贝](#浅拷贝与深拷贝)
 * [迭代器和生成器](#迭代器和生成器)
+* [打印1-100内的素数](#打印1-100内的素数)
 
 <span id="python3新特性"></span>
 ## python3新特性
@@ -84,3 +85,9 @@ for i in range(n):
   1. 运行时，每次遇到**yield**时函数会暂停并保存当前所有的运行信息，返回 yield 的值
   2. 在下一次执行next()方法时从当前位置继续运行。
 
+<span id="打印1-100内的素数"></span>
+## 打印1-100内的素数
+```python
+# 打印素数
+print(' '.join([str(item) for item in filter(lambda x: not [x % i for i in range(2, x) if x % i == 0], range(2, 101))]))
+```
