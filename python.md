@@ -5,6 +5,7 @@
 * [python3新特性](#python3新特性)
 * [基础](#基础)
   * [输入](#输入)
+* [np.mat()与np.array()的区别](#np.mat()与np.array()的区别)
 * [\*args与\*\*kwargs的区别](#args与kwargs的区别)
 * [re.match与re.search的区别](#re.match与re.search的区别)
 * [extend与append的区别](#extend与append的区别)
@@ -55,6 +56,16 @@ for i in range(n):
     y.append(_y)
 ```
 ---
+
+<span id="np.mat()与np.array()的区别"><//span>
+## np.mat()与np.array()的区别
+[参考链接：https://www.jianshu.com/p/3a9c3a397932]
+* np.mat()
+  * 矩阵相乘：(\*) 或者 np.dot()
+  * 点乘：np.multiply()
+* np.array()
+  * 矩阵相乘：np.dot()
+  * 点乘：\* 或者 np.multiply()
 
 <span id="args与kwargs的区别"></span>
 ## \*args与\*\*kwargs的区别 
