@@ -12,6 +12,7 @@
 * [浅拷贝与深拷贝](#浅拷贝与深拷贝)
 * [迭代器和生成器](#迭代器和生成器)
 * [打印1-100内的素数](#打印1-100内的素数)
+* [最大公约数](#最大公约数)
 
 <span id="python3新特性"></span>
 ## python3新特性
@@ -101,4 +102,27 @@ for i in range(n):
 ```python
 # 打印素数
 print(' '.join([str(item) for item in filter(lambda x: not [x % i for i in range(2, x) if x % i == 0], range(2, 101))]))
+```
+
+<span id="最大公约数"></span>
+## 最大公约数
+```python
+# 获取两个数的最大公约数
+def hcf(x, y):
+    if x < y:
+        smaller = x
+    else:
+        smaller = y
+    for i in range(1, smaller + 1):
+        if (x % i == 0) and (y % i == 0):
+            hcf = i
+
+    return hcf
+
+
+if __name__ == '__main__':
+    num1 = int(input('输入第一个数字：'))
+    num2 = int(input('输入第二个数字：'))
+
+    print(num1, '和', num2, '的最大公约数为', hcf(num1, num2))
 ```
