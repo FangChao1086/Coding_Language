@@ -13,6 +13,7 @@
 * [迭代器和生成器](#迭代器和生成器)
 * [打印1-100内的素数](#打印1-100内的素数)
 * [最大公约数](#最大公约数)
+* [最小公倍数](#最小公倍数)
 
 <span id="python3新特性"></span>
 ## python3新特性
@@ -125,4 +126,29 @@ if __name__ == '__main__':
     num2 = int(input('输入第二个数字：'))
 
     print(num1, '和', num2, '的最大公约数为', hcf(num1, num2))
+```
+
+<span id="最小公倍数"></span>
+## 最小公倍数
+```python
+# 获取两个数的最小公倍数
+def lcm(x, y):
+    if x < y:
+        greater = y
+    else:
+        greater = x
+    while (True):
+        if (greater % x == 0) and (greater % y == 0):
+            lcm = greater
+            break
+        greater += 112
+
+    return lcm
+
+
+if __name__ == '__main__':
+    num1 = int(input('输入第一个数字：'))
+    num2 = int(input('输入第二个数字：'))
+
+    print(num1, '和', num2, '的最小公倍数为', lcm(num1, num2))
 ```
