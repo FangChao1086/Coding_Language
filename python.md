@@ -176,7 +176,8 @@ s = "%05d" % n
 * 依赖pyinstaller  
 `pip install pyinstaller`
 * **生成可执行文件命令**  
-`pyinstaller -F xx.py`
+`pyinstaller -F xx.py`  
+`-F`表示生成单个可执行文件  
 * 结果
   * 在终端命令行路径中出现xx.spec文件（成功打包时，还会有dist文件夹）
   * **可执行文件.exe在dist文件夹中**
