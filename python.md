@@ -15,6 +15,7 @@
 * [最大公约数](#最大公约数)
 * [最小公倍数](#最小公倍数)
 * [自动补0](#自动补0)
+* [生成可执行文件.exe](#生成可执行文件.exe)
 
 <span id="python3新特性"></span>
 ## python3新特性
@@ -169,3 +170,24 @@ s = "%05d" % n
 '00123'
 '''
 ```
+
+<span id="生成可执行文件.exe"></span>
+## 生成可执行文件.exe
+* 依赖pyinstaller  
+`pip install pyinstaller`
+* **生成可执行文件命令**  
+`pyinstaller -F xx.py`
+* 结果
+  * 在终端命令行路径中出现xx.spec文件（成功打包时，还会有dist文件夹）
+  * **可执行文件.exe在dist文件夹中**
+* 可能出现的问题  
+`RecursionError: maximum recursion depth exceeded`
+  * 解决步骤1，在xx.spec文件中添加如下代码,并保存  
+  ```python
+  import sys
+  sys.setrecursionlimit(1000000)
+  ```
+  * 解决步骤2，在终端执行以下命令  
+  `pyinstaller -F xx.spec`
+  
+ 
