@@ -181,7 +181,8 @@ s = "%05d" % n
 * 结果
   * 在终端命令行路径中出现xx.spec文件（成功打包时，还会有dist文件夹）
   * **可执行文件.exe在dist文件夹中**
-* 可能出现的问题  
+<details><summary>可能出现的问题</summary>
+ 
 `RecursionError: maximum recursion depth exceeded`
   * 解决步骤1，在xx.spec文件中添加如下代码,并保存  
   ```python
@@ -190,5 +191,6 @@ s = "%05d" % n
   ```
   * 解决步骤2，在终端执行以下命令  
   `pyinstaller -F xx.spec`
+  </details>
   
  
