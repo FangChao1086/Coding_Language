@@ -17,6 +17,7 @@
 * [最小公倍数](#最小公倍数)
 * [自动补0](#自动补0)
 * [生成可执行文件.exe](#生成可执行文件.exe)
+* [python彩蛋](#python彩蛋)
 
 <span id="python3新特性"></span>
 ## python3新特性
@@ -205,4 +206,51 @@ s = "%05d" % n
   `pyinstaller -F xx.spec`
   </details>
   
- 
+<span id="python彩蛋"></span>
+## python彩蛋
+```python
+'''
+author:fangchao
+date:2019/6/4
+
+content:python彩蛋
+'''
+
+# 彩蛋一
+import __hello__
+'''
+Hello world!
+'''
+
+# 彩蛋二
+import this
+'''
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+'''
+
+# 彩蛋三
+import antigravity
+'''
+$输出反重力图像$
+'''
+```
