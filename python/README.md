@@ -5,6 +5,7 @@
 * [python3新特性](#python3新特性)
 * [基础](#基础)
   * [输入](#输入)
+* [变量的作用域](#变量的作用域)
 * [.format的用法](#.format的用法)
 * [np.mat()与np.array()的区别](#np.mat()与np.array()的区别)
 * [\*args与\*\*kwargs的区别](#args与kwargs的区别)
@@ -63,6 +64,51 @@ for i in range(n):
     y.append(_y)
 ```
 ---
+
+## 变量的作用域
+* 全局变量
+  * 在函数体外定义的变量
+* 局部变量
+  * 在函数体内部定义的变量
+* **作用域**
+  * **全局变量在所有作用域都可读**
+  * **局部变量只能在本函数可读**
+  * 优先读取函数本身有的局部变量，再去读全局变量
+  * 函数体内要想对全局变量进行修改，需要在函数体内定义变量前加上全局关键字global
+  
+```python
+'''
+author:fangchao
+date:2019/6/10
+
+content: 变量的作用域
+'''
+# 全局变量
+balance = 1
+
+
+def change():
+    # 定义全局变量
+    global balance
+    balance = 100
+    # 定义局部变量
+    num = 20
+    print("change() balance={0}".format(balance))
+
+
+if __name__ == "__main__":
+    change()
+    print("修改后的 balance={0}".format(balance))
+
+'''
+change() balance=100
+修改后的 balance=100
+
+# 如果注释掉change()函数里的 global
+change() balance=100
+修改后的 balance=1
+'''
+```
 
 <span id=".format的用法"></span>
 ## .format的用法
