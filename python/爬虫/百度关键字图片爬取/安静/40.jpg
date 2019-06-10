@@ -1,0 +1,2331 @@
+<!doctype html>
+<head>
+    <meta charset="gb2312">
+    <title>青海省人力资源和社会保障厅</title>
+    <link href="css/index.css" rel="stylesheet">
+    <!--焦点图-->
+    <link href="/css/lrtk.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/lrtk.min.1.5.js"></script>
+    <!--焦点图 end-->
+    <script type="text/javascript" src="/js/gd/jquery.pack.js"></script>
+    <script type="text/javascript" src="/js/gd/jQuery.blockUI.js"></script>
+    <script type="text/javascript" src="/js/gd/jquery.SuperSlide.js"></script>
+    <link href="/css/tp.css" rel="stylesheet" type="text/css">
+
+    <!--滚动图片-->
+    <link href="/css/tpgd.css" rel="stylesheet">
+    <link href="/js/layui/css/layui.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/js/alixixi_jquery.min.js"></script>
+    <script type="text/javascript" src="/js/config.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+		   //检查IE的版本
+		    function IEVersion() {
+            var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
+            var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器  
+            var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器  
+            var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+            if(isIE) {
+                var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+                reIE.test(userAgent);
+                var fIEVersion = parseFloat(RegExp["$1"]);
+				debugger;
+                if(fIEVersion < 8) {
+                    alert("浏览器版本过低，可能会造成大部分功能无法正常使用，建议使用IE9及以上版本或者谷歌浏览器") ;
+                }   
+              }
+            }
+		
+		
+            $('#example1').bxCarousel({
+                display_num: 5,
+                move: 1,
+                prev_image: 'images/subnet-left.png',
+                next_image: 'images/subnet-right.png',
+
+                margin: 10,
+                auto_hover: true
+            });
+            $('#example2').bxCarousel({
+                display_num: 7,
+                move: 1,
+                auto: true,
+                controls: false,
+                margin: 15,
+                auto_hover: true
+            });
+
+        });
+
+        /*
+        bxCarousel v1.0
+        Plugin developed by: Steven Wanderski
+        */
+        (function($) {
+            $.fn.bxCarousel = function(options) {
+                var defaults = {
+                    move: 4,
+                    display_num: 4,
+                    speed: 500,
+                    margin: 0,
+                    auto: false,
+                    auto_interval: 2000,
+                    auto_dir: 'next',
+                    auto_hover: false,
+                    next_text: 'next',
+                    next_image: '',
+                    prev_text: 'prev',
+                    prev_image: '',
+                    controls: true
+                };
+                var options = $.extend(defaults, options);
+                return this.each(function() {
+                    var $this = $(this);
+                    var li = $this.find('li');
+                    var first = 0;
+                    var fe = 0;
+                    var last = options.display_num - 1;
+                    var le = options.display_num - 1;
+                    var is_working = false;
+                    var j = '';
+                    var clicked = false;
+                    li.css({
+                        'float': 'left',
+                        'listStyle': 'none',
+                        'marginRight': options.margin
+                    });
+                    var ow = li.outerWidth(true);
+                    wrap_width = (ow * options.display_num) - options.margin;
+                    var seg = ow * options.move;
+                    $this.wrap('<div class="bx_container"></div>').width(999999);
+                    if (options.controls) {
+                        if (options.next_image != '' || options.prev_image != '') {
+                            var controls = '<a href="" class="prev"><img src="' + options.prev_image + '"/></a><a href="" class="next"><img src="' + options.next_image + '"/></a>';
+                        } else {
+                            var controls = '<a href="" class="prev">' + options.prev_text + '</a><a href="" class="next">' + options.next_text + '</a>';
+                        }
+                    }
+                    $this.parent('.bx_container').wrap('<div class="bx_wrap"></div>').css({
+                        'position': 'relative',
+                        'width': wrap_width,
+                        'overflow': 'hidden'
+                    }).before(controls);
+                    var w = li.slice(0, options.display_num).clone();
+                    var last_appended = (options.display_num + options.move) - 1;
+                    $this.empty().append(w);
+                    get_p();
+                    get_a();
+                    $this.css({
+                        'position': 'relative',
+                        'left': -(seg)
+                    });
+                    $this.parent().siblings('.next').click(function() {
+                        slide_next();
+                        clearInterval(j);
+                        clicked = true;
+                        return false;
+                    });
+                    $this.parent().siblings('.prev').click(function() {
+                        slide_prev();
+                        clearInterval(j);
+                        clicked = true;
+                        return false;
+                    });
+                    if (options.auto) {
+                        start_slide();
+                        if (options.auto_hover && clicked != true) {
+                            $this.find('li').live('mouseenter', function() {
+                                if (!clicked) {
+                                    clearInterval(j);
+                                }
+                            });
+                            $this.find('li').live('mouseleave', function() {
+                                if (!clicked) {
+                                    start_slide();
+                                }
+                            });
+                        }
+                    }
+
+                    function start_slide() {
+                        if (options.auto_dir == 'next') {
+                            j = setInterval(function() {
+                                slide_next()
+                            }, options.auto_interval);
+                        } else {
+                            j = setInterval(function() {
+                                slide_prev()
+                            }, options.auto_interval);
+                        }
+                    }
+
+                    function slide_next() {
+                        if (!is_working) {
+                            is_working = true;
+                            set_pos('next');
+                            $this.animate({
+                                left: '-=' + seg
+                            }, options.speed, function() {
+                                $this.find('li').slice(0, options.move).remove();
+                                $this.css('left', -(seg));
+                                get_a();
+                                is_working = false;
+                            });
+                        }
+                    }
+
+                    function slide_prev() {
+                        if (!is_working) {
+                            is_working = true;
+                            set_pos('prev');
+                            $this.animate({
+                                left: '+=' + seg
+                            }, options.speed, function() {
+                                $this.find('li').slice(-options.move).remove();
+                                $this.css('left', -(seg));
+                                get_p();
+                                is_working = false;
+                            });
+                        }
+                    }
+
+                    function get_a() {
+                        var str = new Array();
+                        var lix = li.clone();
+                        le = last;
+                        for (i = 0; i < options.move; i++) {
+                            le++
+                            if (lix[le] != undefined) {
+                                str[i] = $(lix[le]);
+                            } else {
+                                le = 0;
+                                str[i] = $(lix[le]);
+                            }
+                        }
+                        $.each(str, function(index) {
+                            $this.append(str[index][0]);
+                        });
+                    }
+
+                    function get_p() {
+                        var str = new Array();
+                        var lix = li.clone();
+                        fe = first;
+                        for (i = 0; i < options.move; i++) {
+                            fe--
+                            if (lix[fe] != undefined) {
+                                str[i] = $(lix[fe]);
+                            } else {
+                                fe = li.length - 1;
+                                str[i] = $(lix[fe]);
+                            }
+                        }
+                        $.each(str, function(index) {
+                            $this.prepend(str[index][0]);
+                        });
+                    }
+
+                    function set_pos(dir) {
+                        if (dir == 'next') {
+                            first += options.move;
+                            if (first >= li.length) {
+                                first = first % li.length;
+                            }
+                            last += options.move;
+                            if (last >= li.length) {
+                                last = last % li.length;
+                            }
+                        } else if (dir == 'prev') {
+                            first -= options.move;
+                            if (first < 0) {
+                                first = li.length + first;
+                            }
+                            last -= options.move;
+                            if (last < 0) {
+                                last = li.length + last;
+                            }
+                        }
+                    }
+                });
+            }
+        })(jQuery);
+    </script>
+    <!--滚动图片 end-->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if ($.browser.msie) {
+                $('.obj').boxShadow(-10, -10, 5, "#0cc"); //obj元素使用了box-shadow
+            }
+        });
+    </script>
+
+    <!--tab 切换-->
+    <script>
+        /*第一种形式 第二种形式 更换显示样式*/
+
+        function setTab(name, cursel, n) {
+            try {
+                for (i = 1; i <= n; i++) {
+                    var menu = document.getElementById(name + i);
+                    var con = document.getElementById("con_" + name + "_" + i);
+                    var con2 = document.getElementById("con2_" + name + "_" + i);
+                    menu.className = i == cursel ? "hover" : "";
+                    con.style.display = i == cursel ? "block" : "none";
+                    con2.style.display = i == cursel ? "block" : "none";
+
+                }
+            } catch (err) {
+
+            }
+
+        }
+
+        //-->
+    </script>
+    <!--tab 切换 end-->
+</head>
+
+<body>
+    <a name="top"></a>
+    <!-- 左侧漂浮 开始 -->
+    <div id="pop-left">
+        
+<div id="sidebar">
+<div id="sideimg">
+<script type="text/javascript" src="js/jquery.SuperSlide.js"></script>
+		<div class="effect">
+				<div id="slideBox" class="slideBox" >
+					<div class="hd">
+						<ul>
+																<li class="">1</li>
+									<li class="">2</li>
+									<li class="">3</li>
+									<li class="">4</li>
+									<li class="">5</li>
+									<li class="">6</li>
+									<li class="">7</li>
+						</ul>
+					</div>
+					<div class="bd"  style=" height:157px;">
+						<ul style="padding: 0; margin: 0; height:157px;">
+									<li style="display: none;">
+                                                    <a href="/pages/zxzx/fdxw/71239.html?frompage=homepage" target="_blank">
+
+                                                <img src="/uploads/images/201810191503440008.png">
+                                        </a>
+                                    </li>
+									<li style="display: none;">
+                                                    <a href="/pages/zxzx/fdxw/71240.html?frompage=homepage" target="_blank">
+
+                                                <img src="/uploads/images/201810191505070254.png">
+                                        </a>
+                                    </li>
+									<li style="display: none;">
+                                                    <a href="http://www.qhhrss.gov.cn/qhrstweb/login.jsp" target="_blank">
+
+                                                <img src="/uploads/images/201807181447480656.jpg">
+                                        </a>
+                                    </li>
+									<li style="display: none;">
+                                                    <a href="http://www.qhhrss.gov.cn/qhrstweb/pages/ybxx/new_yb_cx.jsp" target="_blank">
+
+                                                <img src="/uploads/images/201805041111220318.jpg">
+                                        </a>
+                                    </li>
+									<li style="display: none;">
+                                                    <a href="/pages/xxgk/xxgkml/gkml/1883.html?frompage=homepage" target="_blank">
+
+                                                <img src="/uploads/images/201802010916560744.jpg">
+                                        </a>
+                                    </li>
+									<li style="display: none;">
+                                                    <a href="/qhrstweb/pages/ypml/ypmladd.jsp" target="_blank">
+
+                                                <img src="/uploads/images/201801231505300704.jpg">
+                                        </a>
+                                    </li>
+									<li style="display: none;">
+                                                    <a href="http://www.qhhrss.gov.cn/pages/zxzx/tzgg/71014.html?frompage=homepage" target="_blank">
+
+                                                <img src="/uploads/images/201808231148160099.jpg">
+                                        </a>
+                                    </li>
+						</ul>
+					</div>
+				</div>
+		</div>
+    <script type="text/javascript">
+        //var st = $('#hotpic').liteNav(3000,document.getElementById('NewsPic').children.length-1);
+    </script>
+  </div>
+  <div id="closebotton"><a onclick="hidebar()" style="cursor:pointer;" target="blank">关闭</a></div>
+</div>
+	<script type="text/javascript"> 
+    var st = jQuery(".slideBox").slide( { mainCell:".bd ul",autoPlay:true} );
+    jQuery(document).ready(function(){
+        var s= $('#sidebar').offset().top;
+        $(window).scroll(function(){			   
+            $("#sidebar").animate({top : $(window).scrollTop() + s + "px" },{queue:false,duration:250});
+        });
+        
+    });
+    function hidebar(){
+        document.getElementById('sidebar').style.visibility="hidden";
+        clearInterval(st);
+    }
+    function MM_swapImgRestore() { //v3.0
+      var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+    }
+    function MM_preloadImages() { //v3.0
+      var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+        var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+        if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+    }
+    
+    function MM_findObj(n, d) { //v4.01
+      var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+        d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+      if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+      for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+      if(!x && d.getElementById) x=d.getElementById(n); return x;
+    }
+    
+    function MM_swapImage() { //v3.0
+      var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+       if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+    }
+    function qxzg(){
+        document.getElementById('zgxg').style.display = "none";
+        document.body.style.marginTop = "0";
+    }
+    </script>
+
+
+    </div>
+
+
+    <!-- 左侧漂浮 结束 -->
+
+    <!--header-->
+    <script type="text/javascript" src="/js/common.js"></script>
+<script>
+    function search2(e) {
+        window.location.href = '/includes/search_all.html?title=' + escape(e);
+    }
+
+    // 设置为主页 
+    function SetHome(obj, vrl) {
+        try {
+            obj.style.behavior = 'url(#default#homepage)';
+            obj.setHomePage(vrl);
+        } catch (e) {
+            if (window.netscape) {
+                try {
+                    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+                } catch (e) {
+                    alert("您的浏览器不支持，请按照下面步骤操作：1.打开浏览器设置。2.点击设置网页。3.输入：" + "http://www.qhhrss.gov.cn/" + "点击确定。");
+                }
+                var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+                prefs.setCharPref('browser.startup.homepage', vrl);
+            } else {
+                alert("您的浏览器不支持，请按照下面步骤操作：1.打开浏览器设置。2.点击设置网页。3.输入：" + "http://www.qhhrss.gov.cn/" + "点击确定。");
+            }
+        }
+    }
+    // 加入收藏 兼容360和IE6 
+    function shoucang(sTitle, sURL) {
+        try {
+            window.external.addFavorite(sURL, sTitle);
+        } catch (e) {
+            try {
+                window.sidebar.addPanel(sTitle, sURL, "");
+            } catch (e) {
+                alert("请使用Ctrl+D进行添加");
+            }
+        }
+    }
+</script>
+</script>
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<div id="header">
+    <div class="header0">
+        <div class="jrsc"><a href="javascript:void(0)" onclick="shoucang(document.title,window.location) ">加入收藏</a>|
+            <a onclick="SetHome(window.location)" href="javascript:void(0)">设为首页</a>|
+            <a id="zxzc_sy" onclick="siteUrl('zxzc_sy','/pages/register/register.jsp')" style="cursor:pointer">注册</a>|
+            <a id="zxdl_sy" onclick="siteUrl('zxdl_sy','/login.jsp')" style="cursor:pointer">登录</a></div>
+        <div class="logo">
+            <a href="/index.html"><img src="/images/header-logo.png"></a>
+        </div>
+        <div class="ewm"><span>微信公众号</span><img src="/images/ewm.png"></div>
+        <div class="ewm"><span>青海人社APP</span><img src="/images/app_ewm.jpg"></div>
+        <div class="add"><img src="/images/header-add.png" usemap="#Map" border="0">
+            <map name="Map">
+            <area shape="rect" coords="0,0,514,23" href="javascript:void(0)" target="_blank">
+          </map>
+        </div>
+    </div>
+</div>
+<!--header end-->
+
+<!--导航nav-->
+<div id="navigation">
+    <div class="nav">
+        <ul>
+            <li><a href="/index.html" class="xz-hover">网站首页</a></li>
+            <li><a href="/pages/zxzx">资讯中心</a></li>
+            <li><a href="/pages/wsbs" target="_blank">网上办事</a></li>
+            <li><a href="/pages/xxgk">信息公开</a></li>
+            <li><a href="/pages/zczsk">政策法规</a></li>
+            <li><a href="/pages/zxfw">在线服务</a></li>
+            <li><a href="/pages/ztzl">专题专栏</a></li>
+            <li><a href="/pages/ztzl/bgxx.html">办公学习</a></li>
+        </ul>
+        <div class="search">
+            <input id='serachAll' type="text" class="input-wb"><input type="button" onclick="search()" class="input-an">
+        </div>
+    </div>
+</div>
+    <!--header end-->
+
+    <!--导航nav  end-->
+
+    <!--天气预报nav-->
+    <iframe src="/qhrstweb/weatheraj.jsp" width="100%" height="35px;" frameborder="0" scrolling="no"> </iframe>
+    <!--天气预报nav end-->
+
+
+    <!--资讯中心-->
+    <div class="Information" style="margin-top:1px;">
+        <!--新闻轮播-->
+        <div class="xwlb">
+            <!-- 代码 开始 -->
+            <div class="xwlb">
+ 
+ 			<div id="fsD1" class="focus" >  
+ 			   <div id="D1pic1" class="fPic">  
+ 			      						  <div class="fcon" style="display: none;">
+                                  <a target="_blank" href="/pages/zxzx/tpxw/72114.html?frompage=homepage"><img src="/uploads/images/201904241720540206.jpg" style="opacity: 1; "></a>
+                                      <span class="shadow"><a target="_blank" href="/pages/zxzx/tpxw/72114.html?frompage=homepage">黄南州举办天津市滨海新区助...</a></span>
+						  </div>
+						  <div class="fcon" style="display: none;">
+                                  <a target="_blank" href="/pages/zxzx/tpxw/72109.html?frompage=homepage"><img src="/uploads/images/201904211558500961.bmp" style="opacity: 1; "></a>
+                                      <span class="shadow"><a target="_blank" href="/pages/zxzx/tpxw/72109.html?frompage=homepage">格尔木市创业孵化基地获“全...</a></span>
+						  </div>
+						  <div class="fcon" style="display: none;">
+                                  <a target="_blank" href="/pages/zxzx/tpxw/72104.html?frompage=homepage"><img src="/uploads/images/201904190005280117.bmp" style="opacity: 1; "></a>
+                                      <span class="shadow"><a target="_blank" href="/pages/zxzx/tpxw/72104.html?frompage=homepage">一季度我省就业形势稳中有进...</a></span>
+						  </div>
+						  <div class="fcon" style="display: none;">
+                                  <a target="_blank" href="/pages/zxzx/tpxw/72103.html?frompage=homepage"><img src="/uploads/images/201904190002130441.bmp" style="opacity: 1; "></a>
+                                      <span class="shadow"><a target="_blank" href="/pages/zxzx/tpxw/72103.html?frompage=homepage">天津市滨海新区在黄南州举办...</a></span>
+						  </div>
+						  <div class="fcon" style="display: none;">
+                                  <a target="_blank" href="/pages/zxzx/tpxw/72038.html?frompage=homepage"><img src="/uploads/images/201904011722260267.jpg" style="opacity: 1; "></a>
+                                      <span class="shadow"><a target="_blank" href="/pages/zxzx/tpxw/72038.html?frompage=homepage">邱小平副部长来青调研人社扶...</a></span>
+						  </div>
+						  <div class="fcon" style="display: none;">
+                                  <a target="_blank" href="/pages/zxzx/tpxw/72021.html?frompage=homepage"><img src="/uploads/images/201903272320110504.bmp" style="opacity: 1; "></a>
+                                      <span class="shadow"><a target="_blank" href="/pages/zxzx/tpxw/72021.html?frompage=homepage">脱贫攻坚榜样力量 ● 一线...</a></span>
+						  </div>
+            </div>
+            <div class="fbg">  
+            <div class="D1fBt" id="D1fBt" style=" ">  
+							    <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>0</i></a>
+							    <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>1</i></a>
+							    <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>2</i></a>
+							    <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>3</i></a>
+							    <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>4</i></a>
+							    <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>5</i></a>
+            </div>  
+            </div>  
+         </div>   
+            
+ </div>
+ 
+  <script type="text/javascript">
+                Qfast.add('widgets', { path: "js/terminator2.2.min.js", type: "js", requires: ['fx'] });  
+                Qfast(false, 'widgets', function () {
+                    K.tabs({
+                        id: 'fsD1',
+                        conId: "D1pic1",
+                        tabId:"D1fBt",  
+                        tabTn:"a",
+                        conCn: '.fcon',
+                        auto: 1,
+                        effect: 'fade',
+                        eType: 'mouseover',
+                        pageBt:true,
+                        bns: ['.prev', '.next'],
+                        interval: 3000
+                    }) 
+                })  
+     </script>
+ 
+
+            <!-- 代码 结束 -->
+        </div>
+        <!--新闻轮播 end-->
+        <!--人社信息-->
+        <div class="rsxx">
+            <div class="Menubox1 Menubox1-rsxx">
+                <ul>
+                    <li id="one1" onMouseOver="	setTab('one',1,6)" class="Menuboxzx" onClick="window.open('/pages/zxzx/rsyw/index.html?frompage=homepage');"><span>青海人社</span></li>
+                    <li id="one2" onMouseOver="setTab('one',2,6)" onclick="window.open('/pages/zxzx/swdt/index.html?frompage=homepage');">省际动态</li>
+                    <li id="one3" onMouseOver="setTab('one',3,6)" onclick="window.open('/pages/zxzx/tzgg/index.html?frompage=homepage');">通知公告</li>
+
+                </ul>
+                <div class="index-more">
+                    <div id="con2_one_1"><a href="/pages/zxzx/rsyw/index.html?frompage=homepage" target="_blank">更多</a></div>
+                    <div id="con2_one_2" style="display:none"><a href="/pages/zxzx/swdt/index.html?frompage=homepage" target="_blank">更多</a></div>
+                    <div id="con2_one_3" style="display:none"><a href="/pages/zxzx/tzgg/index.html?frompage=homepage" target="_blank">更多</a></div>
+                </div>
+            </div>
+
+
+            <div class="clear"></div>
+            <div class="Contentbox1 height-rsxx">
+                <div id="con_one_1" class="tMenubox1">
+                    <ul>
+    <li>
+            <a href="/pages/zxzx/rsyw/72114.html?frompage=homepage" target="_blank"  title="黄南州举办天津市滨海新区助力黄南精准脱贫企业专场招聘会" class="title">
+                    黄南州举办天津市滨海新区助力黄南精准脱贫企业专场招
+
+            </a>
+            <span class="date">
+                    04-24
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/rsyw/72113.html?frompage=homepage" target="_blank"  title="青海：全面启动事业单位招聘工作" class="title">
+                    青海：全面启动事业单位招聘工作
+
+            </a>
+            <span class="date">
+                    04-22
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/rsyw/72097.html?frompage=homepage" target="_blank"  title="第8届“12333全国统一咨询日”活动举办——智慧人社 智慧服务" class="title">
+                    第8届“12333全国统一咨询日”活动举办——智慧
+
+            </a>
+            <span class="date">
+                    04-17
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/rsyw/72098.html?frompage=homepage" target="_blank"  title="全国公共就业服务标识标语征集公告" class="title">
+                    全国公共就业服务标识标语征集公告
+
+            </a>
+            <span class="date">
+                    04-17
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/rsyw/72096.html?frompage=homepage" target="_blank"  title="便民！人社部决定取消73项由规范性文件设定的证明材料" class="title">
+                    便民！人社部决定取消73项由规范性文件设定的证明材
+
+            </a>
+            <span class="date">
+                    04-17
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/rsyw/72082.html?frompage=homepage" target="_blank"  title="省人社厅赴海西州开展大走访大排查大调研活动" class="title">
+                    省人社厅赴海西州开展大走访大排查大调研活动
+
+            </a>
+            <span class="date">
+                    04-15
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/rsyw/72081.html?frompage=homepage" target="_blank"  title="我省一季度就业形势稳中有进" class="title">
+                    我省一季度就业形势稳中有进
+
+            </a>
+            <span class="date">
+                    04-15
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/rsyw/72077.html?frompage=homepage" target="_blank"  title="我省积极支持高校毕业生返乡就业创业" class="title">
+                    我省积极支持高校毕业生返乡就业创业
+
+            </a>
+            <span class="date">
+                    04-12
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/rsyw/72078.html?frompage=homepage" target="_blank"  title="省人社厅配强信息化工作设备提升基层“互联网+就业”服务水平" class="title">
+                    省人社厅配强信息化工作设备提升基层“互联网+就业”
+
+            </a>
+            <span class="date">
+                    04-11
+            </span>
+    </li>
+</ul>
+
+
+                </div>
+                <div id="con_one_2" class="tMenubox1" style="display:none">
+                    <ul>
+                        <ul>
+	<li>
+            <a href="/pages/zxzx/swdt/72108.html?frompage=homepage" target="_blank"  title="云南：全面开展“三区三州”职称定向评价工作" class="title">
+                    云南：全面开展“三区三州”职称定向评价工作
+
+            </a>
+            <span class="date">
+                    04-19
+            </span>
+    </li>
+	<li>
+            <a href="/pages/zxzx/swdt/72107.html?frompage=homepage" target="_blank"  title="广东：线上办理成日常 调解仲裁更省事" class="title">
+                    广东：线上办理成日常 调解仲裁更省事
+
+            </a>
+            <span class="date">
+                    04-19
+            </span>
+    </li>
+	<li>
+            <a href="/pages/zxzx/swdt/72106.html?frompage=homepage" target="_blank"  title="天津：签发首张电子社会保障卡" class="title">
+                    天津：签发首张电子社会保障卡
+
+            </a>
+            <span class="date">
+                    04-18
+            </span>
+    </li>
+	<li>
+            <a href="/pages/zxzx/swdt/72105.html?frompage=homepage" target="_blank"  title="福建福州：将提高职业培训补贴标准" class="title">
+                    福建福州：将提高职业培训补贴标准
+
+            </a>
+            <span class="date">
+                    04-18
+            </span>
+    </li>
+	<li>
+            <a href="/pages/zxzx/swdt/72102.html?frompage=homepage" target="_blank"  title="新疆：上调创贷额度助力创业" class="title">
+                    新疆：上调创贷额度助力创业
+
+            </a>
+            <span class="date">
+                    04-17
+            </span>
+    </li>
+	<li>
+            <a href="/pages/zxzx/swdt/72101.html?frompage=homepage" target="_blank"  title="四川：启动高校毕业生“三支一扶”计划" class="title">
+                    四川：启动高校毕业生“三支一扶”计划
+
+            </a>
+            <span class="date">
+                    04-17
+            </span>
+    </li>
+	<li>
+            <a href="/pages/zxzx/swdt/72100.html?frompage=homepage" target="_blank"  title="河北：启动2019年民企招聘周活动" class="title">
+                    河北：启动2019年民企招聘周活动
+
+            </a>
+            <span class="date">
+                    04-17
+            </span>
+    </li>
+	<li>
+            <a href="/pages/zxzx/swdt/72099.html?frompage=homepage" target="_blank"  title="湖北：青年见习三年行动计划启动" class="title">
+                    湖北：青年见习三年行动计划启动
+
+            </a>
+            <span class="date">
+                    04-17
+            </span>
+    </li>
+	<li>
+            <a href="/pages/zxzx/swdt/72087.html?frompage=homepage" target="_blank"  title="云南：为2018年享受国务院政府特殊津贴人员颁证" class="title">
+                    云南：为2018年享受国务院政府特殊津贴人员颁证
+
+            </a>
+            <span class="date">
+                    04-16
+            </span>
+    </li>
+</ul>
+                    </ul>
+                </div>
+                <div id="con_one_3" class="tMenubox1" style="display:none">
+                    <ul>
+                        <ul>
+    <li>
+            <a href="/pages/zxzx/tzgg/72116.html?frompage=homepage" target="_blank"  title="2019年青海省民营企业招聘周暨高校毕业生就业洽谈会活动公告" class="title">
+                    2019年青海省民营企业招聘周暨高校毕业生就业洽谈
+
+            </a>
+            <span class="date">
+                    04-24
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/tzgg/72115.html?frompage=homepage" target="_blank"  title="青海省社会保险服务局单一采购项目征求意见公示" class="title">
+                    青海省社会保险服务局单一采购项目征求意见公示
+
+            </a>
+            <span class="date">
+                    04-24
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/tzgg/72112.html?frompage=homepage" target="_blank"  title="2018年度拟晋升技工系列专业技术职务任职资格人员公示" class="title">
+                    2018年度拟晋升技工系列专业技术职务任职资格人员
+
+            </a>
+            <span class="date">
+                    04-22
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/tzgg/72080.html?frompage=homepage" target="_blank"  title="2019年青海省省直事业单位面向社会公开招聘工作人员公告" class="title">
+                    2019年青海省省直事业单位面向社会公开招聘工作人
+
+            </a>
+            <span class="date">
+                    04-15
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/tzgg/72076.html?frompage=homepage" target="_blank"  title="青海省职业年金计划受托人评选结果公示" class="title">
+                    青海省职业年金计划受托人评选结果公示
+
+            </a>
+            <span class="date">
+                    04-13
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/tzgg/72073.html?frompage=homepage" target="_blank"  title="2018年度部分拟晋升高教系列正高级专业技术职务任职资格人员公示" class="title">
+                    2018年度部分拟晋升高教系列正高级专业技术职务任
+
+            </a>
+            <span class="date">
+                    04-12
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/tzgg/72095.html?frompage=homepage" target="_blank"  title="青海省人力资源和社会保障厅  青海省财政厅关于从2016年1月1日起调整退休人员基本养老金的通知" class="title">
+                    青海省人力资源和社会保障厅  青海省财政厅关于从2
+
+            </a>
+            <span class="date">
+                    04-09
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/tzgg/72094.html?frompage=homepage" target="_blank"  title="青海省人力资源和社会保障厅  青海省财政厅关于从2017年1月1日起调整退休人员基本养老金的通知" class="title">
+                    青海省人力资源和社会保障厅  青海省财政厅关于从2
+
+            </a>
+            <span class="date">
+                    04-09
+            </span>
+    </li>
+    <li>
+            <a href="/pages/zxzx/tzgg/72056.html?frompage=homepage" target="_blank"  title="关于拟同意2019年度开展评比达标表彰活动计划的公示" class="title">
+                    关于拟同意2019年度开展评比达标表彰活动计划的公
+
+            </a>
+            <span class="date">
+                    04-08
+            </span>
+    </li>
+</ul>
+
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!--人社信息 end-->
+
+        <!--通知公告-->
+
+        <div class="tzgg">
+            <div class="bt"><img src="images/Information-tzgg.png"><span>通知公告</span></div>
+            <div class="nr">
+                <div id="demo" style="overflow:hidden;height:216px;width:212px; font-size:12px; line-height:22px;">
+<div id="demo1">
+			  <span>
+			  <a href="/pages/zxzx/tzgg/72116.html?frompage=homepage" style="color:black;" target="_blank"> 2019年青海省民营企业招聘周暨高校毕业生就业洽谈会活动公告 </a>
+		  </span>
+		  <p>
+			  <a href="/pages/zxzx/tzgg/72116.html?frompage=homepage" style="color:black;" target="_blank">
+			    为深入贯彻落实中央经济工作会议精神和习近平总书记在民营企业座谈会上的讲话精神，支持民营企业发展。根据《人力资源和社会保障部、教育部、全国总工会、全国工商联关于开展2019年全国民营企业招聘周活动的通知》和省委、省政府关于做好就业工作的要求，省人力资源和社会保障厅、省教育厅、省总工会、省工商联、共青团青海省委计划联合组织开展以“就业政策惠民企，就业服务促发展”为主题的青海省民营企业招聘周暨高校毕业生就业洽谈会。其中，省级专场招聘会定于2019年4月27日（星期六）上午10时在西宁市新宁广场举办，请广大求职者及用人单位踊跃参加。联 系 人：王老师 报名电话：0971—8258711 8258712地 址：西宁市城西区五四西路86号（五四西路与通海路十字路口东北角4号楼）                青海省人力资源和社会保障厅 青海省教育厅          青海省总工会 青海省工商业联合会 共青团青海省委 2019年4月24日2019年青海省民营企业招聘周各地活动表（各地汇总）
+		      </a>
+		  </p>
+</div>
+<div id="demo2"  style="margin:30px 0 0 0" ></div>
+
+</div>
+<script>
+    var speed=50;
+    demo2.innerHTML=demo1.innerHTML
+    function Marquee(){
+        if(demo2.offsetTop-demo.scrollTop<=0)
+            demo.scrollTop-=demo1.offsetHeight
+        else{
+            demo.scrollTop++
+        }
+    }
+    var MyMar=setInterval(Marquee,speed)
+    demo.onmouseover=function() {clearInterval(MyMar)}
+    demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
+</script>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <!--通知公告 end-->
+
+    </div>
+    <!--资讯中心 end-->
+
+
+
+
+    <!--网上办事大厅-->
+    <div class="clear"></div>
+    <div class="business">
+        <div class="index-bt"><img src="images/business-bt.png"><span onclick="window.open('pages/wsbs')" style="cursor:pointer;">网上办事大厅</span></div>
+        <div class="nr">
+            <a href="/pages/wsbs" target="_blank"><img src="images/business-tp.png" width="847px" height="87px"></a>
+            <a href="/pages/ztzl/ztzl/sbk" target="_blank" class="bszn"></a>
+        </div>
+    </div>
+    <!--网上办事大厅 end-->
+
+
+    <!--热门子网-->
+    <div class="clear"></div>
+    <div class="service">
+        <div class="bt">热门子网</div>
+        <div class="subnet">
+            <div class="img-scroll">
+                <span class="prev"><img src="images/subnet-left.png" /></span>
+                <span class="next"><img src="images/subnet-right.png" /></span>
+                <div class="img-list" style="margin:0 100px">
+                    <ul>
+                        <!--  <li><a href="http://hrm.qhhrss.gov.cn" target="_blank">青海省公共招聘网</a></li>-->
+                        <li><a href="http://www.qhrcsc.com/" target="_blank">青海省人才市场网</a></li>
+                        <!--<li><a href="http://qinghai.caiep.org" target="_blank">青海省外国专家局</a></li>-->
+                        <li><a href="http://www.qhpta.com/" target="_blank">青海省人事考试信息网</a></li>
+                        <li><a href="http://qh.osta.org.cn/" target="_blank">青海省职业技能鉴定指导中心</a></li>
+
+
+                    </ul>
+                </div>
+            </div>
+            <script type="text/javascript">
+                function DY_scroll(wraper, prev, next, img, speed, or) {
+                    var wraper = $(wraper);
+                    var prev = $(prev);
+                    var next = $(next);
+                    var img = $(img).find('ul');
+                    var w = img.find('li').outerWidth(true);
+                    var s = speed;
+                    next.click(function() {
+                        img.animate({
+                            'margin-left': -w
+                        }, function() {
+                            img.find('li').eq(0).appendTo(img);
+                            img.css({
+                                'margin-left': 0
+                            });
+                        });
+                    });
+                    prev.click(function() {
+                        img.find('li:last').prependTo(img);
+                        img.css({
+                            'margin-left': -w
+                        });
+                        img.animate({
+                            'margin-left': 0
+                        });
+                    });
+                    if (or == true) {
+                        ad = setInterval(function() {
+                            next.click();
+                        }, s * 1000);
+                        wraper.hover(function() {
+                            clearInterval(ad);
+                        }, function() {
+                            ad = setInterval(function() {
+                                next.click();
+                            }, s * 1000);
+                        });
+                    }
+                }
+                DY_scroll('.img-scroll', '.prev', '.next', '.img-list', 3, false); // true为自动播放，不加此参数或false就默认不自动
+            </script>
+
+        </div>
+    </div>
+    <!--热门子网 end-->
+
+    <!-- 信息公开-->
+    <div class="clear"></div>
+    <div class="disclosure" style="margin-top:1px;">
+        <div class="index-bt"><img src="images/disclosure-bt.png"><span onclick="window.open('pages/xxgk')" style="cursor:pointer;">信息公开</span></div>
+        <div class="nr">
+            <div class="clear"></div>
+            <div class="disclosure-one" style="margin-top:0p;padding-top:0;">
+                <!-- 政务信息-->
+                <div class="Administrative">
+
+                    <a href="/pages/xxgk/tld/wangdingbang/" target="_blank" class="gkzn0"></a>
+                    <a class="ld" href="/pages/xxgk/tld/wangdingbang/" target="_blank">王定邦</a>
+                    
+                    <a class="ld2" style="width:65px;" href="/pages/xxgk/tld/zhangjianfei/" target="_blank">张剑飞</a>
+                    <a class="ld2" style="width:65px;" href="/pages/xxgk/tld/niedianguang" target="_blank">聂殿光</a>
+                    <a class="ld2" style="width:65px;" href="/pages/xxgk/tld/zhangguoshun/" target="_blank">张国顺 </a>
+                    
+                    <a class="ld2" style="width:65px;" href="/pages/xxgk/tld/shihongzhan/" target="_blank">史弘展 </a>
+                    <a class="ld2" style="width:65px;" href="/pages/xxgk/tld/maojiangming/" target="_blank">毛江明 </a>
+                    <a class="ld2" style="width:65px;" href="/pages/xxgk/tld/guyaohua/" target="_blank">顾耀华 </a>
+                    
+                    <a class="ld2" style="width:65px;" href="/pages/xxgk/tld/zhangyanshan/" target="_blank">张艳山</a>
+                    <a class="ld2" style="width:65px;" href="/pages/xxgk/tld/bixiaoning/" target="_blank">毕晓宁</a>
+
+                    <div class="clear"></div>
+                    <a href="/pages/xxgk?jgzn" target="_blank" class="jgzn"></a>
+                    <a href="/pages/xxgk?nsjg" target="_blank" class="xzcs"></a>
+                    <a href="/pages/xxgk?zsdw" target="_blank" class="zsdw"></a>
+                    <a href="/pages/xxgk?rsxx" target="_blank" class="rsrm"></a>
+                </div>
+                <!-- 政务信息 end-->
+                <!-- 信息简报-->
+                <div class="briefing">
+                    <div class="Menubox1 Menubox1-briefing">
+                        <ul>
+                            <li id="two1" onMouseOver="	setTab('two',1,6)" class="Menuboxzx" onclick="window.open('/pages/xxgk?zxgb');"><span>最新公布</span></li>
+                        </ul>
+                        <div class="index-more">
+                            <div id="con2_two_1"><a href="/pages/xxgk?zxgb" target="_blank">更多</a></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="Contentbox1 height-xxjb">
+                        <div id="con_two_1" class="tMenubox2" style="padding-top:0px;">
+                            <!--include virtual="/pages/xxgk/xxgk_sy_fdfb.html" -->
+                            <ul>
+	<li>
+		<a href="/pages/xxgk/zxgb/72116.html?frompage=homepage" target="_blank"  title="2019年青海省民营企业招聘周暨高校毕业生就业洽谈会活动公告" class="title">
+					2019年青海省民营企业招聘周暨高校毕业生就业洽谈会活动公告
+		</a>
+	</li>
+	<li>
+		<a href="/pages/xxgk/zxgb/72115.html?frompage=homepage" target="_blank"  title="青海省社会保险服务局单一采购项目征求意见公示" class="title">
+					青海省社会保险服务局单一采购项目征求意见公示
+		</a>
+	</li>
+	<li>
+		<a href="/pages/xxgk/zxgb/72080.html?frompage=homepage" target="_blank"  title="2019年青海省省直事业单位面向社会公开招聘工作人员公告" class="title">
+					2019年青海省省直事业单位面向社会公开招聘工作人员公告
+		</a>
+	</li>
+	<li>
+		<a href="/pages/xxgk/zxgb/72073.html?frompage=homepage" target="_blank"  title="2018年度部分拟晋升高教系列正高级专业技术职务任职资格人员公示" class="title">
+				2018年度部分拟晋升高教系列正高级专业技术职务任职资格人员公...
+		</a>
+	</li>
+	<li>
+		<a href="/pages/xxgk/zxgb/72095.html?frompage=homepage" target="_blank"  title="青海省人力资源和社会保障厅  青海省财政厅关于从2016年1月1日起调整退休人员基本养老金的通知" class="title">
+				青海省人力资源和社会保障厅  青海省财政厅关于从2016年1月...
+		</a>
+	</li>
+	<li>
+		<a href="/pages/xxgk/zxgb/72094.html?frompage=homepage" target="_blank"  title="青海省人力资源和社会保障厅  青海省财政厅关于从2017年1月1日起调整退休人员基本养老金的通知" class="title">
+				青海省人力资源和社会保障厅  青海省财政厅关于从2017年1月...
+		</a>
+	</li>
+	<li>
+		<a href="/pages/xxgk/zxgb/72056.html?frompage=homepage" target="_blank"  title="关于拟同意2019年度开展评比达标表彰活动计划的公示" class="title">
+					关于拟同意2019年度开展评比达标表彰活动计划的公示
+		</a>
+	</li>
+	<li>
+		<a href="/pages/xxgk/zxgb/72055.html?frompage=homepage" target="_blank"  title="关于拟同意设立调整和撤销评比达标表彰项目的公示" class="title">
+					关于拟同意设立调整和撤销评比达标表彰项目的公示
+		</a>
+	</li>
+	<li>
+		<a href="/pages/xxgk/zxgb/72020.html?frompage=homepage" target="_blank"  title="青海省2019年02月职业技能提升补贴实名信息表" class="title">
+					青海省2019年02月职业技能提升补贴实名信息表
+		</a>
+	</li>
+	<li>
+		<a href="/pages/xxgk/zxgb/71927.html?frompage=homepage" target="_blank"  title="华能青海分公司所属企业2019年应届毕业生招聘公告" class="title">
+					华能青海分公司所属企业2019年应届毕业生招聘公告
+		</a>
+	</li>
+</ul>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- 信息简报 end-->
+                <!-- 按钮-->
+                <div class="an">
+                    <a href="/pages/xxgk?xxgkgd" target="_blank" class="an-1"></a>
+                    <a href="/pages/xxgk?xxgkzn" target="_blank" class="an-2"></a>
+                    <a href="/pages/xxgk?gkml" target="_blank" class="an-3"></a>
+                    <a id="xxjb_sy" onclick="siteUrl('xxjb_sy','/pages/sqgk/sqgk1.jsp')" target="_blank" class="an-4"></a>
+                    <a href="/pages/xxgk?czxx" target="_blank" class="an-5"></a>
+					<!--<a href="/pages/xxgk?xytx" target="_blank" class="an-6"></a>-->
+					<a href="/pages/xxgk?xytxjs" target="_blank" class="an-6"></a>
+                </div>
+                <!-- 按钮 end-->
+            </div>
+
+            <!--百项堵点-->
+            <!--<div class="nr">
+                <a href="http://toupiao.www.gov.cn/100dudian/index.htm" target="_blank"><img width="1000px" src="images/bxdd.png"></a>
+            </div>-->
+            <!--百项堵点-->
+            <div class="clear"></div>
+            <div class="nr">
+                <div class="layui-carousel" id="test1" lay-filter="test1">
+                    <div carousel-item="">
+                        <a href="/pages/zxzx/tzgg/71238.html?frompage=homepage" target="_blank"><img width="1000px" src="images/carousel/tsjb.jpg"></a>
+                        <a href="http://toupiao.www.gov.cn/100dudian/index.htm" target="_blank"><img width="1000px" src="images/carousel/bxdd.png"></a>
+                        <a href="http://www.gov.cn/xinwen/2018-09/20/content_5323786.htm" target="_blank"><img width="1000px" src="images/carousel/tsjy.jpg"></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <!-- 政策法规-->
+            <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+    <title>青海省人力资源和社会保障厅</title>
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/zixuncenter.css" rel="stylesheet">
+    <link href="/css/qtym.css" rel="stylesheet">
+
+    <!--焦点图-->
+    <link href="/css/lrtk.css" rel="stylesheet">
+    <script type="text/javascript"
+            src="/js/lrtk.min.1.5.js"></script>
+    <!--焦点图 end-->
+
+    <script type="text/javascript" src="/js/gd/jquery.pack.js"></script>
+    <script type="text/javascript" src="/js/gd/jQuery.blockUI.js"></script>
+    <script type="text/javascript" src="/js/gd/jquery.SuperSlide.js"></script>
+    <link href="/css/tp.css" rel="stylesheet" type="text/css">
+
+
+    <!--滚动图片-->
+    <link href="/css/tpgd.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/alixixi_jquery.min.js"></script>
+</head>
+<body>
+<div class="clear"></div>
+<div class="Policies" style="margin-top: 0px">
+    <div class="bt" >
+        <img src="/images/Policies-bt.png"> <span onclick="javascript:window.open('/pages/zczsk/index.html')" style="cursor:pointer;">政策法规</span>
+    </div>
+
+    <div class="nr">
+        <!-- 就业培训-->
+        <div class="zcfg1">
+            <div class="bt1">
+                <div class="left">
+                    <img src="/images/Policies-jypx.png" height="28px"> <span onclick="javascript:window.open('/qhrstweb/pages/zcfg/zcfl.jsp?rid=137')" style="cursor:pointer;">就业创业</span>
+                </div>
+                <div class="right">
+                    <!-- 下拉-->
+                    <div class="container">
+                        <div class="container">
+<ul class="menu">
+    <li>
+        <div class="bit" target="_blank">
+
+                                    <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=137&name=4311" target="_blank"  title="就业困难人员" class="title">
+                            就业困难人员|
+                        </a>
+                        <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=137&name=981" target="_blank"  title="高校毕业生" class="title">
+                            高校毕业生
+                        </a>
+        </div>
+
+        <ul>
+                        <li>
+                            <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=137&name=951" target="_blank"  title="人力资源市场" class="title">
+                                人力资源市场
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=137&name=950" target="_blank"  title="创业" class="title">
+                                创业
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=137&name=949" target="_blank"  title="农民工" class="title">
+                                农民工
+                            </a>
+                        </li>
+        </ul>
+
+    </li>
+</ul>
+</div>
+                    </div>
+                    <!-- 下拉 end-->
+                </div>
+            </div>
+            <div class="nr1 tMenubox3">
+                    <ul>
+    <li>
+            <a href="/pages/zczsk/zcfg/71339.html?frompage=homepage" target="_blank"  title="关于进一步加大就业扶贫政策支持力度提高组织化程度促进转移就业的通知" class="title">
+                    关于进一步加大就业扶贫政策支持力度提高组织化
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/71042.html?frompage=homepage" target="_blank"  title="青海省人力资源和社会保障厅关于印发《青海省就业失业登记管理暂行办法》的通知" class="title">
+                    青海省人力资源和社会保障厅关于印发《青海省就
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/70851.html?frompage=homepage" target="_blank"  title="关于印发青海省公益性岗位开发管理办法的通知" class="title">
+                    关于印发青海省公益性岗位开发管理办法的通知
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/66465.html?frompage=homepage" target="_blank"  title="关于转发《国家职业资格目录》的通知" class="title">
+                    关于转发《国家职业资格目录》的通知
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1235.html?frompage=homepage" target="_blank"  title="关于调整补充青海省职业技能（短期）培训工种时间及补助标准（暂行）的通知" class="title">
+                    关于调整补充青海省职业技能（短期）培训工种时
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1234.html?frompage=homepage" target="_blank"  title="关于开展“职业技能鉴定对接企业服务专项行动”的通知" class="title">
+                    关于开展“职业技能鉴定对接企业服务专项行动”
+            </a>
+    </li>
+</ul>
+            </div>
+        </div>
+        <!-- 就业培训 end-->
+
+        <!-- 社会保障-->
+        <div class="zcfg1">
+            <div class="bt1">
+                <div class="left">
+                    <img src="/images/Policies-sh.png"> <span onclick="javascript:window.open('/qhrstweb/pages/zcfg/zcfl.jsp?rid=235')" style="cursor:pointer;">社会保障</span>
+                </div>
+                <div class="right">
+                    <!-- 下拉-->
+                    <div class="container">
+                        <div class="container">
+<ul class="menu">
+    <li>
+        <div class="bit" target="_blank">
+
+                                    <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=235&name=1015" target="_blank"  title="失业" class="title">
+                            失业|
+                        </a>
+                        <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=235&name=696" target="_blank"  title="工伤" class="title">
+                            工伤|
+                        </a>
+                        <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=235&name=580" target="_blank"  title="医疗" class="title">
+                            医疗|
+                        </a>
+                        <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=235&name=433" target="_blank"  title="生育" class="title">
+                            生育
+                        </a>
+        </div>
+
+        <ul>
+                        <li>
+                            <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=235&name=270" target="_blank"  title="基金监督" class="title">
+                                基金监督
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=235&name=236" target="_blank"  title="养老" class="title">
+                                养老
+                            </a>
+                        </li>
+        </ul>
+    </li>
+</ul>
+</div>
+                    </div>
+                    <!-- 下拉 end-->
+                </div>
+            </div>
+            <div class="nr1 tMenubox3">
+                    <ul>
+    <li>
+            <a href="/pages/zczsk/zcfg/72095.html?frompage=homepage" target="_blank"  title="青海省人力资源和社会保障厅  青海省财政厅关于从2016年1月1日起调整退休人员基本养老金的通知" class="title">
+                    青海省人力资源和社会保障厅  青海省财政厅关
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/72094.html?frompage=homepage" target="_blank"  title="青海省人力资源和社会保障厅  青海省财政厅关于从2017年1月1日起调整退休人员基本养老金的通知" class="title">
+                    青海省人力资源和社会保障厅  青海省财政厅关
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/71537.html?frompage=homepage" target="_blank"  title="关于转发《国家医疗保障局办公室关于当前加强医保协议管理确保基金安全有关工作的通知》的通知" class="title">
+                    关于转发《国家医疗保障局办公室关于当前加强医
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/71336.html?frompage=homepage" target="_blank"  title="青海省社会保险服务局关于将国家谈判17种抗癌药纳入
+青海省医疗保险特殊药品范围的通知" class="title">
+                    青海省社会保险服务局关于将国家谈判17种抗癌
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/71272.html?frompage=homepage" target="_blank"  title="关于将国家谈判17种抗癌药纳入青海省基本医疗保险工伤保险和生育保险药品
+目录乙类范围有关问题的通知" class="title">
+                    关于将国家谈判17种抗癌药纳入青海省基本医疗
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/71258.html?frompage=homepage" target="_blank"  title="省级参保人员转省外治疗备案服务指南" class="title">
+                    省级参保人员转省外治疗备案服务指南
+            </a>
+    </li>
+</ul>
+            </div>
+        </div>
+        <!-- 社会保障 end-->
+
+        <!-- 人才工作-->
+        <div class="zcfg1">
+            <div class="bt1">
+                <div class="left">
+                    <img src="/images/Policies-rc.png"> <span onclick="javascript:window.open('/qhrstweb/pages/zcfg/zcfl.jsp?rid=159')" style="cursor:pointer;">人才工作</span>
+                </div>
+                <div class="right">
+                    <!-- 下拉-->
+                    <div class="container">
+                        <div class="container">
+<ul class="menu">
+    <li>
+        <div class="bit" target="_blank">
+
+                                    <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=159&name=1301" target="_blank"  title="专业技术人员" class="title">
+                            专业技术人员|
+                        </a>
+                        <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=159&name=986" target="_blank"  title="技能人才" class="title">
+                            技能人才
+                        </a>
+        </div>
+
+        <ul>
+        </ul>
+
+    </li>
+</ul>
+</div>
+                    </div>
+                    <!-- 下拉 end-->
+                </div>
+            </div>
+            <div id="rcgzApp" class="nr1 tMenubox3">
+                <ul>
+    <li>
+            <a href="/pages/zczsk/zcfg/71630.html?frompage=homepage" target="_blank"  title="关于2018年职称申报的温馨提示" class="title">
+                    关于2018年职称申报的温馨提示
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/71426.html?frompage=homepage" target="_blank"  title="关于做好2018年度全省职称评审工作的通知" class="title">
+                    关于做好2018年度全省职称评审工作的通知
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/70931.html?frompage=homepage" target="_blank"  title="关于在部分职称系列设置正高级职称有关问题的通知" class="title">
+                    关于在部分职称系列设置正高级职称有关问题的通
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1252.html?frompage=homepage" target="_blank"  title="关于对青海省第三届家庭服务业职业技能大赛优秀选手进行表彰的通知" class="title">
+                    关于对青海省第三届家庭服务业职业技能大赛优秀
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1251.html?frompage=homepage" target="_blank"  title="关于认定鲁国军等19名高技能人才为青海省2016年度企业单位首席技师的通知" class="title">
+                    关于认定鲁国军等19名高技能人才为青海省20
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1253.html?frompage=homepage" target="_blank"  title="关于表彰青海省第十二届职工职业技能大赛优秀选手的通知" class="title">
+                    关于表彰青海省第十二届职工职业技能大赛优秀选
+            </a>
+    </li>
+</ul>
+            </div>
+        </div>
+        <!-- 人才工作 end-->
+
+        <!-- 人事工作-->
+        <div class="zcfg1">
+            <div class="bt1">
+                <div class="left">
+                    <img src="/images/Policies-rs.png"> <span onclick="javascript:window.open('/qhrstweb/pages/zcfg/zcfl.jsp?rid=129')" style="cursor:pointer;">人事工作</span>
+                </div>
+                <div class="right">
+                    <!-- 下拉-->
+                    <div class="container" style="margin-left: 80px;">
+                        <div class="container">
+<ul class="menu">
+    <li>
+        <div class="bit" target="_blank">
+
+                                    <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=129&name=4334" target="_blank"  title="公务员管理" class="title">
+                            公务员管理|
+                        </a>
+                        <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=129&name=721" target="_blank"  title="事业单位人事管理" class="title">
+                            事业单位人事管理
+                        </a>
+        </div>
+
+        <ul>
+                        <li>
+                            <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=129&name=720" target="_blank"  title="军转安置" class="title">
+                                军转安置
+                            </a>
+                        </li>
+        </ul>
+    </li>
+</ul>
+</div>
+                    </div>
+                    <!-- 下拉 end-->
+                </div>
+            </div>
+            <div id="rsgzApp" class="nr1 tMenubox3" >
+                <ul>
+    <li>
+            <a href="/pages/zczsk/zcfg/1186.html?frompage=homepage" target="_blank"  title="关于支持和鼓励事业单位专业技术人员创新创业的实施意见" class="title">
+                    关于支持和鼓励事业单位专业技术人员创新创业的
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1187.html?frompage=homepage" target="_blank"  title="关于加强和规范全省事业单位岗位设置管理工作的实施意见" class="title">
+                    关于加强和规范全省事业单位岗位设置管理工作的
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1191.html?frompage=homepage" target="_blank"  title="青海省人力资源和社会保障厅转发《人力资源社会保障部关于事业单位公开招聘岗位条件设置有关问题的通知》的通知" class="title">
+                    青海省人力资源和社会保障厅转发《人力资源社会
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1192.html?frompage=homepage" target="_blank"  title="中共青海省委组织部青海省人力资源和社会保障厅关于转发《事业单位公开招聘违纪违规行为处理规定》的通知" class="title">
+                    中共青海省委组织部青海省人力资源和社会保障厅
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1188.html?frompage=homepage" target="_blank"  title="关于建立全省机关事业单位防治“吃空饷”问题 长效机制的实施意见" class="title">
+                    关于建立全省机关事业单位防治“吃空饷”问题 
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1189.html?frompage=homepage" target="_blank"  title="青海省人力资源和社会保障厅转发《人力资源社会保障部关于贯彻执行＜事业单位工作人员处分暂行规定＞若干问题的意见》的通知" class="title">
+                    青海省人力资源和社会保障厅转发《人力资源社会
+            </a>
+    </li>
+</ul>
+            </div>
+        </div>
+        <!-- 人事工作 end-->
+        <!-- 工资收入-->
+        <div class="zcfg1">
+            <div class="bt1">
+                <div class="left">
+                    <img src="/images/Policies-gz.png"> <span onclick="javascript:window.open('/qhrstweb/pages/zcfg/zcfl.jsp?rid=134')" style="cursor:pointer;">工资收入</span>
+                </div>
+                <div class="right">
+                    <!-- 下拉-->
+                    <div class="container">
+                        <div class="container">
+<ul class="menu">
+    <li>
+        <div class="bit" target="_blank">
+
+                                    <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=134&name=1356" target="_blank"  title="最低工资" class="title">
+                            最低工资|
+                        </a>
+                        <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=134&name=734" target="_blank"  title="工资集体协商" class="title">
+                            工资集体协商
+                        </a>
+        </div>
+
+        <ul>
+                        <li>
+                            <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=134&name=733" target="_blank"  title="工资指导线" class="title">
+                                工资指导线
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=134&name=135" target="_blank"  title="工资支付保障" class="title">
+                                工资支付保障
+                            </a>
+                        </li>
+        </ul>
+    </li>
+</ul>
+</div>
+                    </div>
+                    <!-- 下拉 end-->
+                </div>
+            </div>
+            <div id="gzsrApp" class="nr1 tMenubox3" >
+                <ul>
+    <li>
+            <a href="/pages/zczsk/zcfg/71977.html?frompage=homepage" target="_blank"  title="关于调整我省机关事业单位工作人员遗属生活困难补助费标准的通知" class="title">
+                    关于调整我省机关事业单位工作人员遗属生活困难
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/71327.html?frompage=homepage" target="_blank"  title="关于同意西宁市等8个地区发布2018年人力资源市场部分工种（职业）工资指导价位的批复" class="title">
+                    关于同意西宁市等8个地区发布2018年人力资
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1805.html?frompage=homepage" target="_blank"  title="机关事业单位工作人员办理退休手续的审批程序？" class="title">
+                    机关事业单位工作人员办理退休手续的审批程序？
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1804.html?frompage=homepage" target="_blank"  title="关于省级行政事业单位工资统发和省直非财政统发工资单位的审批程序？" class="title">
+                    关于省级行政事业单位工资统发和省直非财政统发
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1802.html?frompage=homepage" target="_blank"  title="青海省人力资源和社会保障厅关于进一步做好2015年春节前农民工工资清欠督查工作的函" class="title">
+                    青海省人力资源和社会保障厅关于进一步做好20
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1207.html?frompage=homepage" target="_blank"  title="关于转发《拖欠农民工工资“黑名单”管理暂行办法》的通知" class="title">
+                    关于转发《拖欠农民工工资“黑名单”管理暂行办
+            </a>
+    </li>
+</ul>
+            </div>
+        </div>
+        <!-- 工资收入 end-->
+
+        <!-- 劳动关系-->
+        <div class="zcfg1">
+            <div class="bt1">
+                <div class="left">
+                    <img src="/images/Policies-ld.png"> <span onclick="javascript:window.open('/qhrstweb/pages/zcfg/zcfl.jsp?rid=142')" style="cursor:pointer;">劳动关系</span>
+                </div>
+                <div class="right">
+
+                    <!-- 下拉-->
+                    <div class="container">
+                        <ul class="menu">
+    <li>
+        <div class="bit" target="_blank">
+
+                                    <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=142&name=853" target="_blank"  title="调解仲裁" class="title">
+                            调解仲裁|
+                        </a>
+                        <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=142&name=848" target="_blank"  title="劳动关系协调" class="title">
+                            劳动关系协调
+                        </a>
+        </div>
+
+        <ul>
+                        <li>
+                            <a href="/qhrstweb/pages/zcfg/zcfltolist.jsp?rid=142&name=143" target="_blank"  title="劳动保障监察" class="title">
+                                劳动保障监察
+                            </a>
+                        </li>
+        </ul>
+
+    </li>
+</ul>
+                    </div>
+                    <!-- 下拉 end-->
+                </div>
+            </div>
+            <div id="ldgxApp" class="nr1 tMenubox3">
+                <ul>
+    <li>
+            <a href="/pages/zczsk/zcfg/1238.html?frompage=homepage" target="_blank"  title="关于同意西宁市等8个地区发布2017年人力资源市场部分工种（职业）工资指导价位的批复" class="title">
+                    关于同意西宁市等8个地区发布2017年人力资
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1240.html?frompage=homepage" target="_blank"  title="关于发布青海省2017年企业工资指导线的通知" class="title">
+                    关于发布青海省2017年企业工资指导线的通知
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/70096.html?frompage=homepage" target="_blank"  title="关于青海通信服务有限公司部分岗位实行特殊工时工作制的批复" class="title">
+                    关于青海通信服务有限公司部分岗位实行特殊工时
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1239.html?frompage=homepage" target="_blank"  title="关于开展全省劳动人事争议处理效能建设督查调研工作的通知" class="title">
+                    关于开展全省劳动人事争议处理效能建设督查调研
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1236.html?frompage=homepage" target="_blank"  title="青海省劳动保障监察机构举报投诉公开电话" class="title">
+                    青海省劳动保障监察机构举报投诉公开电话
+            </a>
+    </li>
+    <li>
+            <a href="/pages/zczsk/zcfg/1237.html?frompage=homepage" target="_blank"  title="加大惩戒力度  推进社会诚信建设——省人社厅劳动监察局负责人就《青海省劳动保障守法诚信等级评价及失信惩戒办法（试行）》答记者问" class="title">
+                    加大惩戒力度  推进社会诚信建设——省人社厅
+            </a>
+    </li>
+</ul>
+            </div>
+        </div>
+        <!-- 劳动关系 end-->
+
+    </div>
+
+</div>
+</body>
+</html>
+
+            <!-- 政策法规 end-->
+        </div>
+    </div>
+    <!-- 信息公开 end-->
+
+
+
+    <!-- 在线服务-->
+    <div class="Online">
+        <div class="index-bt"><img src="images/Online-bt.png"><span onclick="window.open('pages/zxfw')" style="cursor:pointer;">在线服务</span></div>
+        <div class="nr">
+            <a href="/pages/ztzl/ztzl/12333" target="_blank"><img src="images/Online.png"></a>
+            <!-- 权力目录-->
+            <div class="left">
+                <iframe src="/qhrstweb/tzxx/tzxx_sy.action" width="216" height="315" frameborder="0" scrolling="no"> </iframe>
+            </div>
+            <!-- 权力目录 end-->
+            <!-- 厅长信箱-->
+            <div class="center">
+                <!-- 厅长信箱-->
+                <div class="Menubox1 Menubox1-briefing">
+                    <ul>
+                        <li id="three1" onMouseOver="	setTab('three',1,6)" class="Menuboxzx"><span><a id="tzxxckgd_sy" onClick="siteUrl('tzxxckgd_sy','/pages/tzxx/tzxxlist.jsp')"  style="color:#4484b2;:havor" target="_blank">厅长信箱<a></span></li>
+                        <li id="three2" onMouseOver="setTab('three',2,6)" onclick="window.open('/pages/zxfw/jytablgs?frompage=homepage');">提案建议办理</li>
+                        <li id="three3" onMouseOver="setTab('three',3,6)"><a id="yjjyckgd_sy" onclick="siteUrl('yjjyckgd_sy','/pages/yjjy/jyxclist.jsp')">意见建议</a></li>
+                    </ul>
+                    <div class="index-more">
+                        <div id="con2_three_1"><a id="tzxxgd_sy" href="" onClick="siteUrl('tzxxgd_sy','/pages/tzxx/tzxxlist.jsp')" target="_blank">更多</a></div>
+                        <div id="con2_three_2" style="display:none"><a href="/pages/zxfw/jytablgs?frompage=homepage" target="_blank">更多</a></div>
+                        <div id="con2_three_3" style="display:none"><a id="yjjygd_sy" href="" onclick="siteUrl('yjjygd_sy','/pages/yjjy/jyxclist.jsp')" target="_blank">更多</a></div>
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="Contentbox1 height-tzxx">
+                    <div id="con_three_1" class="tMenubox2">
+                        <ul>
+	<li>
+		<a href="pages/jiaoliu/tzxx/T1910175.html?frompage=homepage" target="_blank"  title="职称评审" class="title">
+					职称评审
+		</a>
+	</li>
+	<li>
+		<a href="pages/jiaoliu/tzxx/T1910073.html?frompage=homepage" target="_blank"  title="人事档案管理" class="title">
+					人事档案管理
+		</a>
+	</li>
+	<li>
+		<a href="pages/jiaoliu/tzxx/T1910067.html?frompage=homepage" target="_blank"  title="关于养老退休问题" class="title">
+					关于养老退休问题
+		</a>
+	</li>
+	<li>
+		<a href="pages/jiaoliu/tzxx/T1910062.html?frompage=homepage" target="_blank"  title="关于养老保险补缴的问题" class="title">
+					关于养老保险补缴的问题
+		</a>
+	</li>
+	<li>
+		<a href="pages/jiaoliu/tzxx/T1910061.html?frompage=homepage" target="_blank"  title="关于养老保险补缴的问题" class="title">
+					关于养老保险补缴的问题
+		</a>
+	</li>
+</ul>
+
+                    </div>
+                    <div id="con_three_2" class="tMenubox2" style="display:none">
+                        <ul>
+        <li>
+            <a href="/pages/zxfw/jytablgs/tabl/71536.html?frompage=homepage" target="_blank"  title="关于省政协第12届委员会第1次会议第20180401委员提案的答复" class="title">
+				关于省政协第12届委员会第1次会议第20180401委员提案的...
+            </a>
+        </li>
+        <li>
+            <a href="/pages/zxfw/jytablgs/tabl/71535.html?frompage=homepage" target="_blank"  title="关于省政协第12届委员会第1次会议第20180076号委员提案的答复" class="title">
+				关于省政协第12届委员会第1次会议第20180076号委员提案...
+            </a>
+        </li>
+        <li>
+            <a href="/pages/zxfw/jytablgs/tabl/71534.html?frompage=homepage" target="_blank"  title="关于省政协第12届委员会第1次会议第20180401号委员提案的答复" class="title">
+				关于省政协第12届委员会第1次会议第20180401号委员提案...
+            </a>
+        </li>
+        <li>
+            <a href="/pages/zxfw/jytablgs/tabl/71533.html?frompage=homepage" target="_blank"  title="关于省政协第12届委员会第1次会议第20180336号委员提案的答复" class="title">
+				关于省政协第12届委员会第1次会议第20180336号委员提案...
+            </a>
+        </li>
+        <li>
+            <a href="/pages/zxfw/jytablgs/tabl/71625.html?frompage=homepage" target="_blank"  title="关于省政协第12届委员会第1次会议第20180401委员提案的答复" class="title">
+				关于省政协第12届委员会第1次会议第20180401委员提案的...
+            </a>
+        </li>
+</ul>
+                    </div>
+                    <div id="con_three_3" class="tMenubox2" style="display:none">
+                        <ul>
+	<li>
+		<a href="pages/jiaoliu/yjjy/Y1910036.html?frompage=homepage" target="_blank"  title="关于企业职工退休年龄" class="title">
+					关于企业职工退休年龄
+		</a>
+	</li>
+	<li>
+		<a href="pages/jiaoliu/yjjy/Y1910034.html?frompage=homepage" target="_blank"  title="关于养老退休问题" class="title">
+					关于养老退休问题
+		</a>
+	</li>
+	<li>
+		<a href="pages/jiaoliu/yjjy/Y1910029.html?frompage=homepage" target="_blank"  title="建模拍照上传和审核" class="title">
+					建模拍照上传和审核
+		</a>
+	</li>
+	<li>
+		<a href="pages/jiaoliu/yjjy/Y1910016.html?frompage=homepage" target="_blank"  title="养老保险省外转移问题" class="title">
+					养老保险省外转移问题
+		</a>
+	</li>
+	<li>
+		<a href="pages/jiaoliu/yjjy/Y1910002.html?frompage=homepage" target="_blank"  title="养老金?发" class="title">
+					养老金?发
+		</a>
+	</li>
+</ul>
+
+                    </div>
+
+
+                </div>
+                <!-- 厅长信箱 end-->
+
+                <!-- 厅长信箱-->
+                <div class="clear ptop-10"></div>
+                <div class="Menubox1 Menubox1-briefing ">
+                    <ul>
+                        <li id="four1" onMouseOver="	setTab('four',1,6)" class="Menuboxzx"><span><a id="tzdfckgd_sy" onclick="siteUrl('tzdfckgd_sy','/pages/tzxx/tzxxlist.jsp')">厅长答复</a></span></li>
+                        <li id="four2" onMouseOver="setTab('four',2,6)" onclick="window.open('/pages/ztzl/ztzl/12333/zxrd?frompage=homepage');">12333热点回复</li>
+                    </ul>
+                    <div class="index-more">
+                        <div id="con2_four_1"><a id="tzdfgd_sy" onclick="siteUrl('tzdfgd_sy','/pages/tzxx/tzxxlist.jsp') " target="_blank" style="cursor:pointer">更多</a></div>
+                        <div id="con2_four_2" style="display:none"><a href="/pages/ztzl/ztzl/12333/zxrd?frompage=homepage" target="_blank">更多</a></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="Contentbox1 height-tzhf ">
+                    <div id="con_four_1" class="tMenubox2">
+                        <ul>
+        <li class="Online-hd">
+            <a href="pages/jiaoliu/tzxx/T1910175.html?frompage=homepage" target="_blank"  title="  网友您好，专业技术职业资格与职称对应关系的政策，目前正在研究制定中，预计今年上半年出台。
+
+" class="title">&nbsp;
+					  网友您好，专业技术职业资格与职称对应关系的政策，目前正在...
+            </a>
+        </li>
+        <li class="Online-hd">
+            <a href="pages/jiaoliu/tzxx/T1910073.html?frompage=homepage" target="_blank"  title="  网友您好，应到原单位查询档案留存、转递等问题。
+
+" class="title">&nbsp;
+					  网友您好，应到原单位查询档案留存、转递等问题。
+
+
+            </a>
+        </li>
+        <li class="Online-hd">
+            <a href="pages/jiaoliu/tzxx/T1910067.html?frompage=homepage" target="_blank"  title="  网友您好，企业职工养老保险实行省级统筹，青海油田参加青海省城镇职工养老保险，全省执行统一政策，养老保险关系转移要凭参保地社保经办机构出具的关系转移联系函，网友只是提出了转移申请，但并未办理转移手续。根据青海省人力资源和社会保障厅《关于解决我省城镇职工基本养老保险历史遗留问题的实施细则的通知》(青人社厅发[2010]191号)文件规定，2011年当地社保经办机构协调石油局、石棉矿及社区对历史遗留问题政策进行了宣传，集中办理了大部分人员补缴业务。在省人社厅《关于进一步加强企业职工养老保险费征缴核定管理的通知》（青人社厅发[2018]22号）文件下发前，各级社保经办机构工作人员严格按照养老保险操作规程解答疑惑、办理业务，所以工作人员给网友的答复是达到退休年龄可以一次补缴至15年。《关于进一步加强企业职工养老保险费征缴核定管理的通知》（青人社厅发[2018]22号）文件明确规定，“参加企业职工基本养老保险人个人达到国家规定退休年龄（灵活就业人员女年满55周岁）时，累计缴费不足15年的，按照参保人意见，延长缴费至满15年，或转入城乡居民养老保险按照城乡居民养老保险政策享受待遇”。根据网友所反映情况需继续缴纳养老保险至规定年限方可享受养老保险待遇。
+
+" class="title">&nbsp;
+					  网友您好，企业职工养老保险实行省级统筹，青海油田参加青海...
+            </a>
+        </li>
+        <li class="Online-hd">
+            <a href="pages/jiaoliu/tzxx/T1910062.html?frompage=homepage" target="_blank"  title="  网友您好，企业职工养老保险实行省级统筹，青海油田参加青海省城镇职工养老保险，全省执行统一政策，养老保险关系转移要凭参保地社保经办机构出具的关系转移联系函，不能凭青海油田出具的参保证明办理关系转移手续。根据青海省人力资源和社会保障厅《关于解决我省城镇职工基本养老保险历史遗留问题的实施细则的通知》(青人社厅发[2010]191号)文件规定，当地社保经办机构2011年前集中办理了大部分人员补缴业务。按省人社厅《关于进一步加强企业职工养老保险费征缴核定管理的通知》（青人社厅发[2018]22号）规定，“参加企业职工基本养老保险人个人达到国家规定退休年龄（灵活就业人员女年满55周岁）时，累计缴费不足15年的，按照参保人意见，延长缴费至满15年，或转入城乡居民养老保险按照城乡居民养老保险政策享受待遇”。根据网友所反映情况需继续缴纳养老保险费到规定年限方可享受职工养老保险待遇。
+
+
+" class="title">&nbsp;
+					  网友您好，企业职工养老保险实行省级统筹，青海油田参加青海...
+            </a>
+        </li>
+</ul>
+
+                    </div>
+                    <div id="con_four_2" class="tMenubox2" style="display:none">
+                                 <ul>
+            <li class="Online-hd"><a href="/pages/ztzl/ztzl/12333/zxrd/72091.html?frompage=homepage" target="_blank"   title="查询一下我的养老保险">
+			
+									  查询一下我的养老保险
+			</a>
+			</li>
+        </ul>
+         <ul>
+            <li class="Online-hd"><a href="/pages/ztzl/ztzl/12333/zxrd/72088.html?frompage=homepage" target="_blank"   title="没有认证停发退休金">
+			
+									  没有认证停发退休金
+			</a>
+			</li>
+        </ul>
+         <ul>
+            <li class="Online-hd"><a href="/pages/ztzl/ztzl/12333/zxrd/72089.html?frompage=homepage" target="_blank"   title="就业困难">
+			
+									  就业困难
+			</a>
+			</li>
+        </ul>
+         <ul>
+            <li class="Online-hd"><a href="/pages/ztzl/ztzl/12333/zxrd/72090.html?frompage=homepage" target="_blank"   title="领取养老金资格认证">
+			
+									  领取养老金资格认证
+			</a>
+			</li>
+        </ul>
+
+
+                    </div>
+                </div>
+                <!-- 厅长信箱 end-->
+
+
+
+            </div>
+            <!-- 厅长信箱 end-->
+            <!-- 表格下载-->
+            <div class="right">
+                <script type="text/javascript">
+    function fopen() {
+        window.open('/qhrstweb/pages/download/downloadlist.jsp')
+    }
+</script>
+<div class="bt">
+    <div class="left1"><span onclick="fopen()" style="cursor:pointer;">下载</span></div>
+	<div class="right1"><a href="/qhrstweb/pages/download/downloadlist.jsp" target="_blank">更多</a></div>
+</div>
+
+<div class="nr tMenubox4">
+    <div class="clear"></div>
+	<ul >
+						<li>
+                    <a href="/pages/zxfw/bgxz/71999.html?frompage=homepage" target="_blank"  title="青海省2019—2021年急需紧缺人才需求情况一览表（高技能人才）" class="title">
+						青海省2019—2021年急需紧...
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/71998.html?frompage=homepage" target="_blank"  title="青海省2019—2021年急需紧缺人才需求情况一览表（高级管理人才）" class="title">
+						青海省2019—2021年急需紧...
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/71997.html?frompage=homepage" target="_blank"  title="青海省2019—2021年急需紧缺人才需求情况一览表（高级专业技术人才）" class="title">
+						青海省2019—2021年急需紧...
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/71996.html?frompage=homepage" target="_blank"  title="青海省急需紧缺人才需求调查统计联系方式" class="title">
+						青海省急需紧缺人才需求调查统计联...
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/71980.html?frompage=homepage" target="_blank"  title="青海省人力资源社会保障系统行政审批及公共服务事项清单" class="title">
+						青海省人力资源社会保障系统行政审...
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/71691.html?frompage=homepage" target="_blank"  title="专业技术人才知识更新工程2019年国家级高级研修项目申报表" class="title">
+						专业技术人才知识更新工程2019...
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/71690.html?frompage=homepage" target="_blank"  title="专业技术人才知识更新工程2019年省级高级研修项目申报表" class="title">
+						专业技术人才知识更新工程2019...
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/71411.html?frompage=homepage" target="_blank"  title="青海省社会保险服务局关于下发省内异地就医互认定点药店名单的通知" class="title">
+						青海省社会保险服务局关于下发省内...
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/71410.html?frompage=homepage" target="_blank"  title="青海省城镇职工省内异地就医互认定点医疗机构名单" class="title">
+						青海省城镇职工省内异地就医互认定...
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/71303.html?frompage=homepage" target="_blank"  title="专业技术员职称用表" class="title">
+						专业技术员职称用表
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/71257.html?frompage=homepage" target="_blank"  title="青海省省级参保人员医疗保险现金报销流程图" class="title">
+						青海省省级参保人员医疗保险现金报...
+                    </a>
+				</li>
+				<li>
+                    <a href="/pages/zxfw/bgxz/70892.html?frompage=homepage" target="_blank"  title="基本医疗保险关系转移接续申请表" class="title">
+						基本医疗保险关系转移接续申请表
+                    </a>
+				</li>
+	</ul>
+</div>
+
+
+            </div>
+            <!-- 表格下载 end-->
+
+        </div>
+    </div>
+    <!-- 在线服务 end-->
+
+    <!-- 专题专栏-->
+    <div class="Special">
+        <div class="index-bt"><img src="images/Special-bt.png"><span onclick="window.open('pages/ztzl')" style="cursor:pointer;">专题专栏</span></div>
+        <div class="nr">
+            <!-- 专题报道-->
+            	<div class="ztbd">
+           <div class="nr">
+               <a href="/pages/ztzl/bgxx.html" target="_blank" title="党政干部基本能力培训"><img src="/images/zhuanti_bgxx.jpg"></a>
+              <div class="nr2">
+              <div class="img-scroll2">  
+                    <span class="prev2" style="display:block; left:0; position:absolute;margin:30px 0 0 0;"><img src="/images/subnet-left.png"  style="width:35px; height:35px;border:0px"/></span>
+              <div class="img-list2">
+                  <ul>
+                     <li><a href="http://www.gov.cn/pushinfo/v150203/index.htm" target="_blank" title="国务院信息"><img src="/images/zhuanti_gwyxx.jpg"></a></li>
+                     <li><a href="http://www.qh.gov.cn/zwgk/xwdt/qhyw/" target="_blank" title="省政府信息"><img src="/images/zhuanti_szfxx.jpg"></a></li>
+
+
+                                                          <li>
+                                       <a href="/pages/ztzl/ztzl/ydjy/" target="_blank" title="青海省基本医保跨省异地就医直接结算">
+                                               <img src="http://111.12.148.99/uploads/images/201801221120000321.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/19cqgdbdh/sjcqgdbdhzt/" target="_blank" title="中国共产党第十九次全国代表大会专题">
+                                               <img src="http://111.12.148.99/uploads/images/201801100905580448.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/dsjcyds/" target="_blank" title="青海省第三届创业大赛">
+                                               <img src="http://111.12.148.99/uploads/images/201801100927080265.png">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/qmcb/" target="_blank" title="全民参保">
+                                               <img src="http://111.12.148.99/uploads/images/201801100930240605.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/hfjs/" target="_blank" title="行风建设">
+                                               <img src="http://111.12.148.99/uploads/images/201809281602520025.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/slsz/tzgg/" target="_blank" title="三联四做">
+                                               <img src="http://111.12.148.99/uploads/images/201801100933340502.png">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/lxyzxxjy/" target="_blank" title="“两学一做”学习教育">
+                                               <img src="http://111.12.148.99/uploads/images/201801100935170348.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/sysszt/tzgg/" target="_blank" title="三严三实专题">
+                                               <img src="http://111.12.148.99/uploads/images/201801100937200495.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/dqzlx/" target="_blank" title="党的群众路线教育实践教学活动">
+                                               <img src="http://111.12.148.99/uploads/images/201801100938380058.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/gwykl/tzgg/" target="_blank" title="公务员考录">
+                                               <img src="http://111.12.148.99/uploads/images/201801100941560428.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/sydwgkzp/kldt/" target="_blank" title="事业单位公开招聘">
+                                               <img src="http://111.12.148.99/uploads/images/201801100943210926.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/gxbysjyzcxc/zcxc/" target="_blank" title="高校毕业生就业政策宣传">
+                                               <img src="http://111.12.148.99/uploads/images/201801100944410870.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/gyzpgxbys/" target="_blank" title="青海省国有企业招聘高校毕业生信息公开">
+                                               <img src="http://111.12.148.99/uploads/images/201801100946020872.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/szyf/" target="_blank" title="三支一扶">
+                                               <img src="http://111.12.148.99/uploads/images/201801100948150435.jpg">
+                                       </a>
+                                   </li>
+
+                                   <li>
+                                       <a href="/pages/ztzl/ztzl/pbdbbzgz/" target="_blank" title="评比达标表彰工作">
+                                               <img src="http://111.12.148.99/uploads/images/201801100954520219.jpg">
+                                       </a>
+                                   </li>
+
+               
+                     <li><a href="/pages/ztzl/ztzl/12333" target="_blank" title="12333网上服务"><img src="/images/zhuanti_12333.png"></a></li>
+                     <li><a href="/pages/ztzl/ztzl/sbk" target="_blank" title="社会保障卡服务平台"><img src="/images/zhuanti_sbk.png"></a></li>
+
+         	 </ul>
+                    </div>
+                        <span class="next2" style="display:block; left:790px; margin:30px 0 0 0; position:absolute"><img src="images/subnet-right.png"   style="width:35px; height:35px; right:0px; border:0px"/></span>
+                    </div>
+  			</div>
+       </div> 
+    </div>
+
+    <script type="text/javascript">
+        function DY_scroll(wraper,prev2,next2,img,speed,or)
+        {
+            var wraper = $(wraper);
+            var prev = $(prev2);
+            var next = $(next2);
+            var img = $(img).find('ul');
+            var w = img.find('li').outerWidth(true);
+            var s = speed;
+            next.click(function()
+            {
+                img.animate({'margin-left':-w},function()
+                {
+                    img.find('li').eq(0).appendTo(img);
+                    img.css({'margin-left':0});
+                });
+            });
+            prev.click(function()
+            {
+                img.find('li:last').prependTo(img);
+                img.css({'margin-left':-w});
+                img.animate({'margin-left':0});
+            });
+            if (or == true)
+            {
+                ad = setInterval(function() { next.click();},s*1000);
+                wraper.hover(function(){clearInterval(ad);},function(){ad = setInterval(function() { next.click();},s*1000);});
+            }
+        }
+        DY_scroll('.img-scroll2','.prev2','.next2','.img-list2',3,true);// true为自动播放，不加此参数或false就默认不自动
+    </script>
+        </div>
+    </div>
+    <!-- 专题专栏 end-->
+    <!-- foot-->
+    <script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+
+<!--右侧漂浮-->
+<div id="pop">
+
+
+    <a href="/includes/search_enter.html" target="_blank" class="pop-a1"></a>
+    <a href="/pages/xxgk" target="_blank" class="pop-a2"></a>
+    <a id="tzxx_ycpf" onclick="siteUrl('tzxx_ycpf','/pages/tzxx/tzxxlist.jsp')" target="_blank" class="pop-a3"></a>
+    <a id="zcdl_ycfd" onclick="siteUrl('zcdl_ycfd','/login.jsp')" target="_self" class="pop-a5"></a>
+    <a href="/pages/wsbs" target="_blank" class="pop-a4"></a>
+    <a href="#top" title="返回顶端" class="pop-a0"></a>
+
+</div>
+<script>
+    //var popad=new Pop();
+</script>
+
+<div class="clear"></div>
+<div class="link">
+    <div class="left">
+        <a href="http://www.mohrss.gov.cn/" target="_blank"><img src="/images/link-zg.png"></a>
+    </div>
+    <div class="center">
+        <div class="sx">
+            <a href="http://www.xining.gov.cn" target="_blank">西宁市</a>
+            <a href="http://www.haidong.gov.cn" target="_blank">海东市</a>
+            <a href="http://www.qhhn.gov.cn" target="_blank">海南州</a>
+            <a href="http://www.haixi.gov.cn" target="_blank">海西州</a>
+            <a href="http://www.qhhb.gov.cn" target="_blank">海北州</a>
+            <a href="http://www.huangnan.gov.cn" target="_blank">黄南州</a>
+            <a href="http://www.qhys.gov.cn" target="_blank">玉树州</a>
+            <a href="http://www.guoluo.gov.cn" target="_blank">果洛州</a>
+
+
+        </div>
+        <div class="lj">
+            <select class="zfl" onchange="javascript:window.open(this.options[this.selectedIndex].value);this.selectedIndex=0">
+                <option>--省直属各厅局--</option>
+                <option value="http://www.qhfgw.gov.cn/">省发展和改革委员会</option>
+							 <option value="http://www.qhec.gov.cn/">青海省工业和信息化厅</option>
+							 <option value="http://www.qhedu.gov.cn/">省教育厅</option>
+							 <option value="http://www.qhkj.gov.cn/">省科学技术厅</option>
+							 <option value="http://qhsmzw.gov.cn/">省民族宗教事务委员会</option>
+							 <option value="http://www.qhga.gov.cn/">省公安厅</option>
+							 <option value="http://www.qhjc.gov.cn/">省监察委员会</option>
+							 <option value="http://www.qhmz.gov.cn/">省民政厅</option>
+							 <option value="http://www.qhsf.gov.cn/">省司法厅</option>
+							 <option value="http://www.qhcz.gov.cn/">省财政厅</option>
+							 <option value="http://www.qhlr.gov.cn/index">青海省自然资源厅</option>
+							 <option value="http://www.qhepb.gov.cn/">省生态环境厅</option>
+							 <option value="http://www.qhcin.gov.cn/">省住房和城乡建设厅</option><!-- 链接打不开，访问超时  -->
+							 <option value="http://www.qhjt.gov.cn/">省交通运输厅</option>
+							 <option value="http://www.qhsl.gov.cn/">省水利厅</option>
+							 <option value="http://www.qhagri.gov.cn/">青海省农业农村厅</option>
+							 <option value="http://www.qhlyt.gov.cn/">省林业厅</option>
+							 <option value="http://www.qhcom.gov.cn/">省商务厅</option>
+							 <option value="http://www.qhly.gov.cn/">青海省文化和旅游厅</option><!-- 没有链接  -->    
+							 <option value="http://www.qhwjw.gov.cn/">青海省卫生健康委员会</option>
+							 <option value="http://www.qhaudit.gov.cn/">省审计厅</option>
+							 <option value="http://www.qhws.gov.cn/">省外事办公室</option>
+							 <!-- <option value="http://125.72.14.80/">青海省地方金融监督管理局</option> 先 不显示 -->
+							 <option value="http://www.qhfpj.gov.cn">省扶贫开发局</option>
+							 <option value="http://www.qhtyj.gov.cn/">省体育局</option>
+							 <option value="http://www.qhfzb.gov.cn/">省政府法制办</option>
+							 <option value="http://www.qhsafety.gov.cn/">青海省应急管理厅</option><!-- 链接打不开，需要去掉index.html，名称为   青海省安全生产监督管理局 青海煤矿安全监察局 -->
+							 <option value="http://www.qhzljd.gov.cn/">省质监局</option><!-- 青海省质量技术监督局  -->
+							 <option value="http://www.qhaic.gov.cn/">青海省市场监督管理局</option>
+							 <option value="http://www.sdaqh.gov.cn/">省食品药品监督管理局</option>
+							 <option value="http://www.qhtjj.gov.cn/">省统计局</option>
+							 <option value="http://www.qhrt.gov.cn/ ">省广电局</option>
+							 <option value="http://www.qhgrain.gov.cn/">省粮食局</option>
+							 <option value="http://www.qhjy.gov.cn/">省监狱局</option>
+							 <option value="http://www.qhch.gov.cn/">省测绘地理信息局</option>
+							 <option value="http://www.qhcoop.cn/">省供销社</option><
+							 <option value="http://www.qhkxw.com/">省科协</option>
+							 <option value="http://www.qhcl.org/">省残联</option>
+							 <option value="http://www.qhfic.cn/">省工商联</option>
+							 <option value="http://www.qhredcross.org.cn/">省红十字会</option>
+							 <option value="http://www.qhh.gov.cn/">青海湖景区保护管理局</option>
+							 <option value="http://www.qhsjy.gov.cn/">三江源国家公园管理局</option>
+							 <option value="http://www.qhbb.gov.cn/">省编制办</option>
+							 <option value="http://www.qhrf.gov.cn/">省人民防空办公室</option>
+							 <option value="http://www.qhio.gov.cn/">省政府新闻办公室</option>        
+         </select>
+
+            <select class="rlw" onchange=javascript:window.open(this.options[this.selectedIndex].value);this.selectedIndex=0>
+           <option>--各省人力资源和社会保障网--</option>
+                 <OPTION value=http://www.bjrbj.gov.cn/>北京市人力资源和社会保障局</OPTION> 
+                    <OPTION value=http://hrss.tj.gov.cn>天津人力资源和社会保障局</OPTION> 
+                    <OPTION value=http://www.hbrsw.gov.cn>河北省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.sx.hrss.gov.cn/>山西省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.nm12333.cn/>内蒙古自治区人力资源和社会保障网</OPTION> 
+                    <OPTION value=http://www.ln.hrss.gov.cn/>辽宁省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://hrss.jl.gov.cn/>吉林省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.hl.lss.gov.cn/>黑龙江省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.12333sh.gov.cn/>上海市人力资源和社会保障局</OPTION> 
+                    <OPTION value=http://www.jshrss.gov.cn/>江苏人力资源和社会保障网</OPTION> 
+                    <OPTION value=http://www.zjhrss.gov.cn/>浙江省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.ah.hrss.gov.cn/>安徽省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://rst.fujian.gov.cn/>福建省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://hrss.jiangxi.gov.cn/>江西省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://hrss.shandong.gov.cn/>山东省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.ha.hrss.gov.cn/>河南省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.hb.hrss.gov.cn/>湖北省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.hnrst.gov.cn/>湖南省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.gdhrss.gov.cn/>广东省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=https://www.gxhrss.gov.cn/>广西壮族自治区人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://hi.lss.gov.cn/>海南省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.cqhrss.gov.cn/>重庆人力资源和社会保障网</OPTION> 
+                    <OPTION value=http://www.sc.hrss.gov.cn/>四川省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.gzrst.gov.cn/>贵州人力资源和社会保障网</OPTION> 
+                    <OPTION value=http://www.ynhrss.gov.cn/>云南人力资源和社会保障网</OPTION> 
+                    <OPTION value=http://www.xz.hrss.gov.cn/>西藏自治区人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.shaanxihrss.gov.cn/>陕西省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.rst.gansu.gov.cn/>甘肃省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.qhhrss.gov.cn/>青海省人力资源和社会保障厅</OPTION> 
+                    <OPTION value=http://www.nxhrss.gov.cn/>宁夏人力资源和社会保障网</OPTION> 
+                    <OPTION value=http://www.xjrs.gov.cn/>新疆维吾尔自治区人力资源和社会保障厅</OPTION>  
+         </select>
+        </div>
+    </div>
+    <!--<div class="right1"><a href="http://111.12.148.99/" target="_blank"><img src="/images/link-1.png"></a></div>-->
+    <div class="right1">
+        <a href="http://www.qh.gov.cn" target="_blank">
+            <img style="height: 41px;width: 120px" src="/images/qhrmzf.png">
+        </a>
+    </div>
+    <div class="right2">
+        <a href="http://www.qhrcsc.com/" target="_blank">
+            <img style="height: 41px;width: 120px" src="/images/link-2.png">
+        </a>
+    </div>
+    <div class="right2">
+        <a href="http://www.qhpta.com" target="_blank">
+            <img style="height: 41px;width: 120px" src="/images/link-4.png"></a>
+    </div>
+
+
+</div>
+<!-- 友情链接 end-->
+<!-- foot-->
+<div class="clear"></div>
+<div class="foot">
+    <div class="link">
+        <div class="link0">
+            <a href="/includes/wzdt.html" target="_blank">网站地图</a>
+            <!-- <a href="/includes/gybz.html" target="_blank">关于本站</a>-->
+            <a href="/qhrstweb/pages/yjjy/jyxclist.jsp" target="_blank">意见建议</a></div>
+    </div>
+
+
+
+    <div class="bq">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+
+                <td width="49%" align="right">
+                    <a href="http://bszs.conac.cn/sitename?method=show&id=06F2A98B1B8C75A8E053022819ACA1CE" target="_blank"><img src="/images/red.png" border="0" /></a>
+                </td>
+                <td width="2%" align="right">&nbsp;</td>
+                <td width="49%" align="left">
+                    <a href="http://pucha.kaipuyun.cn/exposure/jiucuo.html?site_code=6300000023&url=http%3A%2F%2Fwww.qhhrss.gov.cn%2F" target="_blank"><img style="margin-top:-5px;" src="/images/jiucuo.png" border="0" /></a>
+                </td>
+            </tr>
+        </table>
+
+
+        <br/> 主办单位：青海省人力资源和社会保障厅
+        <br/>地址：青海省西宁市五四西路5号 邮政编码： 810008 传真：（0971）8258000 值班：（0971）8258069 政策咨询：（0971）12333<br/>
+		
+		<span style="color:#000;text-decoration:none; padding:0 5px margin:5px">政府网站标识码:6300000023&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=63010402000046" target="_blank" style="color:#000;margin:5px">公安备案号:63010402000046&nbsp;&nbsp;&nbsp;&nbsp;</a><a href="http://www.miitbeian.gov.cn" target="_blank" style="color:#000;margin:5px">ICP备案序号:青ICP备10000392号&nbsp;&nbsp;&nbsp;&nbsp;</a>
+		</span>
+		
+		</div>
+   
+
+    </div>
+    <!-- foot end-->
+
+    <script>
+        var url = location.href;
+
+        if (url.indexOf("?frompage=homepage") > 0) {
+            var obj = document.getElementById("cus");
+            obj.href = "/index.html";
+            obj.innerHTML = "首页";
+
+        }
+    </script>
+    <!-- foot end-->
+    <div class="foot">
+        <div class="bq">
+            <iframe src="/qhrstweb/pageview/pagepv.action" width="350" height="30" scrolling="no" frameborder="0"></iframe>
+        </div>
+        <div class="bq">
+            <script type="text/javascript">
+                var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : "http://");
+                document.write(unescape("%3Cspanid='cnzz_stat_icon_1260640950'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260640950%26show%3Dpic1 ' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+        </div>
+    </div>
+	
+	<div id="body">
+   
+   <!--<div id="float_AD" style="position:absolute;z-index:1000;" onmouseover="window.clearInterval(timer)" onmouseout="timer=window.setInterval('changePos()',delay);">
+    <a href="http://www.qhhrss.gov.cn/pages/xxgk/xxgkml/btwj/zhwj/71502.html"><img src="http://www.qhhrss.gov.cn/uploads/images/tonggao.png" style="width:300px; height:100px;" /></a>
+   <span style="CURSOR:hand;color:#AAAAAA;font-weight:bold" onclick="clearInterval(timer);obj.style.visibility = 'hidden'">关闭</span>
+   </div>
+
+   <script type="text/javascript" language="JavaScript"> 
+   var obj=document.getElementById("float_AD"); 
+   var clientHeight=768; 
+   var clientWidth=1024; 
+   var timer; var delay= 80;//移动速度
+   function randomNum(size){ return Math.floor(Math.random()*(size-160+1)); } 
+   obj.style.top=randomNum(clientHeight)+"px"; 
+   obj.style.left=randomNum(clientWidth)+"px"; 
+   var y=parseInt(obj.style.top); 
+   var x=parseInt(obj.style.left); 
+   var flagX=false; var flagY=true; 
+   function moveY(){ if(flagY){ y++; if(y>clientHeight-160){ flagY=false; } }else{ y--; if(y<0){ flagY=true; } } obj.style.top=y+"px"; }
+   function moveX(){ if(flagX){ x++; if(x>clientWidth-160){ flagX=false; } }else{ x--; if(x<0){ flagX=true; } } obj.style.left=x+"px"; }
+   window.onresize=function(){ clientHeight=document.documentElement.clientHeight; clientWidth=document.documentElement.clientWidth; }
+   function changePos(){moveY();moveX(); } 
+   function creatTimer(){timer = window.setInterval("changePos();",delay); }
+   function hide() {obj.style.display = "none";
+   obj.onmouseout = function() {obj.style.visibility = "hidden";}}
+   var url = window.location.href;if (true) {creatTimer();} else {hide();}
+   </script> -->
+
+</body>
+
+<script src="/js/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['carousel', 'form'], function() {
+        var carousel = layui.carousel,
+            form = layui.form;
+        //常规轮播
+        //建造实例
+        carousel.render({
+            elem: '#test1',
+            width: '100%', //设置容器宽度
+            height: '100px',
+            arrow: 'always', //始终显示箭头
+            indicator: 'none'
+                //,anim: 'updown' //切换动画方式
+        });
+    })
+</script>
+
+</html>
