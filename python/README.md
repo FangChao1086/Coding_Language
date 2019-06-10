@@ -74,7 +74,7 @@ for i in range(n):
   * **全局变量在所有作用域都可读**
   * **局部变量只能在本函数可读**
   * 优先读取函数本身有的局部变量，再去读全局变量
-  * 函数体内要想对全局变量进行修改，需要在函数体内定义变量前加上全局关键字global
+  * 函数体内要想对全局变量进行修改，需要在函数体内先用全局关键字global定义
   
 ```python
 '''
@@ -165,7 +165,101 @@ a: 23, b: 34
   * 运行前提：主线程必须存在，不存在时守护线程就会被销毁
 * **多线程的锁机制**
   * 多进程之间对内存中的变量不会产生冲突
-  * **多线程对内存中的变量进行共享时会产生影响，产生死锁**
+  * **多个线程对内存中的共享变量同时进行操作时会产生影响，产生死锁（线程安全问题，需要加锁解决，对数据进行锁定）**
+    * 示例，两个线程：t1,t2；t1对全局变量a进行加100任务，t2对全局变量a进行减100任务；当线程t1、t2同时修改全局变量a时，循环次数够多时，a的值就会出现变化
+    * ```python
+      '''
+      author:fangchao
+      date:2019/6/10
+
+      content:线程死锁
+      '''
+      import threading
+
+      balance = 100
+
+
+      def change(num, counter):
+          global balance
+          for i in range(counter):
+              balance += num
+              balance -= num
+              if balance != 100:
+                  # 如果输出这句话，说明线程不安全
+                  print("balance=%d" % balance)
+                  break
+
+
+      if __name__ == "__main__":
+          thr1 = threading.Thread(target=change, args=(100, 500000), name='t1')
+          thr2 = threading.Thread(target=change, args=(100, 500000), name='t2')
+          thr1.start()
+          thr2.start()
+          thr1.join()
+          thr2.join()
+          print("{0} 线程结束".format(threading.current_thread().getName()))
+
+      '''
+      balance=200
+      MainThread 线程结束
+      '''
+      ```
+* 死锁的解决方案：**互斥锁**
+* 在某个线程需要更改共享数据时，先将其资源锁定，直到该线程释放资源时，其他线程才能对其进行更改
+* 核心代码
+  * ```python
+    # 创建锁
+    mutex = threading.Lock()
+    # 锁定
+    mutex.acquire()
+    # 释放
+    mutex.release()
+    ```
+* 示例
+  * ```python
+    '''
+    author:fangchao
+    date:2019/6/10
+
+    content:互斥锁
+    '''
+    import threading
+
+    balance = 100
+    lock = threading.Lock()  # 创建锁
+
+
+    def change(num, counter):
+        global balance
+        for i in range(counter):
+            # 先要获取锁
+            lock.acquire()
+            balance += num
+            balance -= num
+
+            # 释放锁
+            lock.release()
+
+            if balance != 100:
+                # 如果输出这句话，说明线程不安全
+                print("balance=%d" % balance)
+                break
+
+
+    if __name__ == "__main__":
+        thr1 = threading.Thread(target=change, args=(100, 500000), name='t1')
+        thr2 = threading.Thread(target=change, args=(100, 500000), name='t2')
+        thr1.start()
+        thr2.start()
+        thr1.join()
+        thr2.join()
+        print("{0} 线程结束".format(threading.current_thread().getName()))
+
+    '''
+    MainThread 线程结束
+    '''
+    ```
+
 
 <span id="打印1-100内的素数"></span>
 ## 打印1-100内的素数
