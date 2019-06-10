@@ -205,61 +205,60 @@ a: 23, b: 34
       '''
       ```
 * 死锁的解决方案：**互斥锁**
-* 在某个线程需要更改共享数据时，先将其资源锁定，直到该线程释放资源时，其他线程才能对其进行更改
-* 核心代码
-  * ```python
-    # 创建锁
-    mutex = threading.Lock()
-    # 锁定
-    mutex.acquire()
-    # 释放
-    mutex.release()
-    ```
-* 示例
-  * ```python
-    '''
-    author:fangchao
-    date:2019/6/10
+  * 在某个线程需要更改共享数据时，先将其资源锁定，直到该线程释放资源时，其他线程才能对其进行更改
+  * 核心代码
+    * ```python
+      # 创建锁
+      mutex = threading.Lock()
+      # 锁定
+      mutex.acquire()
+      # 释放
+      mutex.release()
+      ```
+  * 示例
+    * ```python
+      '''
+      author:fangchao
+      date:2019/6/10
 
-    content:互斥锁
-    '''
-    import threading
+      content:互斥锁
+      '''
+      import threading
 
-    balance = 100
-    lock = threading.Lock()  # 创建锁
-
-
-    def change(num, counter):
-        global balance
-        for i in range(counter):
-            # 先要获取锁
-            lock.acquire()
-            balance += num
-            balance -= num
-
-            # 释放锁
-            lock.release()
-
-            if balance != 100:
-                # 如果输出这句话，说明线程不安全
-                print("balance=%d" % balance)
-                break
+      balance = 100
+      lock = threading.Lock()  # 创建锁
 
 
-    if __name__ == "__main__":
-        thr1 = threading.Thread(target=change, args=(100, 500000), name='t1')
-        thr2 = threading.Thread(target=change, args=(100, 500000), name='t2')
-        thr1.start()
-        thr2.start()
-        thr1.join()
-        thr2.join()
-        print("{0} 线程结束".format(threading.current_thread().getName()))
+      def change(num, counter):
+          global balance
+          for i in range(counter):
+              # 先要获取锁
+              lock.acquire()
+              balance += num
+              balance -= num
 
-    '''
-    MainThread 线程结束
-    '''
-    ```
+              # 释放锁
+              lock.release()
 
+              if balance != 100:
+                  # 如果输出这句话，说明线程不安全
+                  print("balance=%d" % balance)
+                  break
+
+
+      if __name__ == "__main__":
+          thr1 = threading.Thread(target=change, args=(100, 500000), name='t1')
+          thr2 = threading.Thread(target=change, args=(100, 500000), name='t2')
+          thr1.start()
+          thr2.start()
+          thr1.join()
+          thr2.join()
+          print("{0} 线程结束".format(threading.current_thread().getName()))
+
+      '''
+      MainThread 线程结束
+      '''
+      ```
 
 <span id="打印1-100内的素数"></span>
 ## 打印1-100内的素数
