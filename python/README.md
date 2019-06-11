@@ -18,6 +18,7 @@
 * [最大公约数](#最大公约数)
 * [最小公倍数](#最小公倍数)
 * [自动补0](#自动补0)
+* [拍照功能](#拍照功能)
 * [生成可执行文件.exe](#生成可执行文件.exe)
 * [python彩蛋](#python彩蛋)
 
@@ -329,6 +330,36 @@ s = "%05d" % n
 '''
 '00123'
 '''
+```
+
+## 拍照功能
+* 显示画面，按S拍照，按空格退出
+```python
+'''
+author:fangchao
+date:2019/6/11
+
+content:拍照功能
+'''
+import cv2
+
+# 0:笔记本摄像头  1：外置摄像头
+cap = cv2.VideoCapture(0)
+i = 0
+
+while (True):
+    ret, frame = cap.read()
+    if ret:
+        cv2.imshow('capture', frame)
+    k = cv2.waitKey(1)  # 等待1ms
+    if k == ord(' '):
+        break
+    if k == ord('s'):
+        cv2.imwrite('capture_' + str(i) + '.jpg', frame)
+        i = i + 1
+
+cap.release()  # 关闭视频捕获器
+cv2.destroyAllWindows()  # 关闭所有窗口
 ```
 
 <span id="生成可执行文件.exe"></span>
