@@ -161,7 +161,9 @@ a: 23, b: 34
 
 <span id="浅拷贝与深拷贝"></span>
 # 浅拷贝与深拷贝
-[浅拷贝与深拷贝](https://www.cnblogs.com/xueli/p/4952063.html)
+[参考链接：浅拷贝与深拷贝](https://www.cnblogs.com/xueli/p/4952063.html)  
+* copy浅拷贝：没有拷贝子对象，原始数据改变，子对象也会跟着改变
+* deepcopy深拷贝：拷贝子对象，原始数据改变，子对象不会改变
 
 <span id="迭代器和生成器"></span>
 ## 迭代器和生成器
