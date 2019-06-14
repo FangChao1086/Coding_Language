@@ -6,6 +6,7 @@
 * [基础](#基础)
   * [输入](#输入)
 * [变量的作用域](#变量的作用域)
+* [dict按value排序](#dict按value排序)
 * [.format的用法](#.format的用法)
 * [np.mat()与np.array()的区别](#np.mat()与np.array()的区别)
 * [\*args与\*\*kwargs的区别](#args与kwargs的区别)
@@ -109,6 +110,16 @@ change() balance=100
 change() balance=100
 修改后的 balance=1
 '''
+```
+
+<span id="dict按value排序"></span>
+## dict按value排序
+```python
+# 按照value从大到小排序:
+sorted(d.items(), key = lambda x:x[1], reverse = True)
+
+# 按照value从小到大排序:
+sorted(d.items(), key = lambda x:x[1], reverse =False)
 ```
 
 <span id=".format的用法"></span>
