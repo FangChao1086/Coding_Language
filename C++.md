@@ -10,6 +10,7 @@
 * [static关键字](#static关键字)
 * [虚函数和纯虚函数](#虚函数和纯虚函数)
 * [new和malloc](#new和malloc)
+* [UDP与TCP](#UDP与TCP)
 
 <span id="C++11新特性"></span>
 ## C++11新特性
@@ -56,3 +57,8 @@
 * malloc失败返回空，new失败抛异常
 * new/delete会调用构造、析构函数，malloc/free不会，所以他们无法满足动态对象的要求。
 * new返回有类型的指针，malloc返回无类型的指针
+
+<span id="UDP与TCP"></span>
+## UDP与TCP
+* TCP:面向连接的，可靠传输，适于传输大量数据
+* UDP:面向非连接的，不可靠传输，适于小量数据的传输
