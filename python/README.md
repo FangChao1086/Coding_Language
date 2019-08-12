@@ -14,6 +14,7 @@
 * [extend与append的区别](#extend与append的区别)
 * [浅拷贝与深拷贝](#浅拷贝与深拷贝)
 * [迭代器和生成器](#迭代器和生成器)
+* [装饰器](#装饰器)
 * [线程与进程](#线程与进程)
 * [打印1-100内的素数](#打印1-100内的素数)
 * [最大公约数](#最大公约数)
@@ -173,6 +174,74 @@ a: 23, b: 34
 * 生成器：一个返回迭代器的函数，只能用于迭代操作
   1. 运行时，每次遇到**yield**时函数会暂停并保存当前所有的运行信息，返回 yield 的值
   2. 在下一次执行next()方法时从当前位置继续运行。
+
+## 装饰器
+[参考链接:装饰器](https://www.runoob.com/w3cnote/python-func-decorators.html)
+* 概念：修改其他函数功能的函数
+* 简单装饰器
+  ```python
+  def use_logging(func):
+    def wrapper():
+        logging.warn("%s is running" % func.__name__)
+        return func()   # 把 foo 当做参数传递进来时，执行func()就相当于执行foo()
+    return wrapper
+
+def foo():
+    print('i am foo')
+
+foo = use_logging(foo)  # foo没有加括号表示未执行，可以传递，可以传给给变量，也可以作为参数传递；因为装饰器 use_logging(foo) 返回的是函数对象 wrapper，这条语句相当于foo = wrapper
+foo()                   # 执行foo()就相当于执行 wrapper()
+  ```
+* 简化
+  ```python
+  def use_logging(func):
+    def wrapper():
+        logging.warn("%s is running" % func.__name__)
+        return func()
+    return wrapper
+
+@use_logging
+def foo():
+    print("i am foo")
+# 省去foo = use_logging(foo)
+foo()
+  ```
+* 带参数的装饰器
+  ```python
+  def use_logging(level):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            if level == "warn":
+                logging.warn("%s is running" % func.__name__)
+            elif level == "info":
+                logging.info("%s is running" % func.__name__)
+            return func(*args)
+        return wrapper
+    return decorator
+
+@use_logging(level="warn")
+def foo(name='foo'):
+    print("i am %s" % name)
+
+foo()
+  ```
+* 问题：失去了原函数的元信息，比如__name__
+* 解决方法
+  ```python
+  from functools import wraps
+  def logged(func):
+      @wraps(func)
+      def with_logging(*args, **kwargs):
+          print func.__name__      # 输出 'f'
+          print func.__doc__       # 输出 'does some math'
+          return func(*args, **kwargs)
+      return with_logging
+
+  @logged
+  def f(x):
+     """does some math"""
+     return x + x * x
+  ```
 
 ## 线程与进程
 ### 线程
