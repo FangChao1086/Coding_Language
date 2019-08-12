@@ -186,11 +186,11 @@ a: 23, b: 34
         return func()   # 把 foo 当做参数传递进来时，执行func()就相当于执行foo()
     return wrapper
 
-def foo():
-    print('i am foo')
-
-foo = use_logging(foo)  # foo没有加括号表示未执行，可以传递，可以传给给变量，也可以作为参数传递；因为装饰器 use_logging(foo) 返回的是函数对象 wrapper，这条语句相当于foo = wrapper
-foo()                   # 执行foo()就相当于执行 wrapper()
+  def foo():
+      print('i am foo')
+      
+  foo = use_logging(foo)  # foo没有加括号表示未执行，可以传递，可以传给给变量，也可以作为参数传递；因为装饰器 use_logging(foo) 返回的是函数对象 wrapper，这条语句相当于foo = wrapper
+  foo()                   # 执行foo()就相当于执行 wrapper()
   ```
 * 简化
   ```python
@@ -200,11 +200,11 @@ foo()                   # 执行foo()就相当于执行 wrapper()
         return func()
     return wrapper
 
-@use_logging
-def foo():
-    print("i am foo")
-# 省去foo = use_logging(foo)
-foo()
+  @use_logging
+  def foo():
+      print("i am foo")
+  # 省去foo = use_logging(foo)
+  foo()
   ```
 * 带参数的装饰器
   ```python
@@ -219,11 +219,11 @@ foo()
         return wrapper
     return decorator
 
-@use_logging(level="warn")
-def foo(name='foo'):
-    print("i am %s" % name)
+  @use_logging(level="warn")
+  def foo(name='foo'):
+      print("i am %s" % name)
 
-foo()
+  foo()
   ```
 * 问题：失去了原函数的元信息，比如__name__
 * 解决方法
