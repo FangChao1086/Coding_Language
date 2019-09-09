@@ -135,7 +135,6 @@ a: 23, b: 34
 
 <span id="np.mat()与np.array()的区别"></span>
 ## [np.mat()与np.array()的区别](#re_)
-[参考链接：np.mat()与np.array()的区别](https://www.jianshu.com/p/3a9c3a397932)
 * np.mat()
   * 矩阵相乘：\* 或者 np.dot()
   * 点乘：np.multiply()
