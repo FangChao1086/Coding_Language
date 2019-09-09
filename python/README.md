@@ -156,7 +156,9 @@ a: 23, b: 34
 
 <span id="extend与append的区别"></span>
 ## [extend与append的区别](#re_)
-[extend与append的区别](https://www.cnblogs.com/tzuxung/p/5706245.html)
+[extend与append的区别](https://www.cnblogs.com/tzuxung/p/5706245.html)   
+* extend：只能接收list，把list中的每个元素添加到原list中
+* append：接收任意数据类型的参数，直接全部加到list尾部
 
 <span id="浅拷贝与深拷贝"></span>
 ## [浅拷贝与深拷贝](#re_)
