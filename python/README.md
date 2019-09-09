@@ -21,6 +21,7 @@
 * [最小公倍数](#最小公倍数)
 * [自动补0](#自动补0)
 * [拍照功能](#拍照功能)
+* [日期处理datetime](#日期处理datetime)
 * [生成可执行文件.exe](#生成可执行文件.exe)
 * [python彩蛋](#python彩蛋)
 
@@ -450,6 +451,20 @@ while (True):
 
 cap.release()  # 关闭视频捕获器
 cv2.destroyAllWindows()  # 关闭所有窗口
+```
+
+<span id="日期处理datetime"></span>
+## [python日期处理datetime](#re_)
+```python
+# 时间差
+import datetime as dt
+
+date_received = '20120301'
+d = '20120305'
+this_gap = (
+        dt.datetime(int(d[0:4]), int(d[4:6]), int(d[6:8])) -
+        dt.datetime(int(date_received[0:4]), int(date_received[4:6]), int(date_received[6:8]))).days
+print('时间差this_gap:', this_gap)
 ```
 
 <span id="生成可执行文件.exe"></span>
