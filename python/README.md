@@ -206,6 +206,11 @@ a: 23, b: 34
       print("i am foo")
   # 省去foo = use_logging(foo)
   foo()
+  
+  """
+  WARNING:root:foo is running
+  i am foo
+  """
   ```
 * 带参数的装饰器
   ```python
