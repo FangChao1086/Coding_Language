@@ -1,10 +1,10 @@
+<span id="re_"></span>
 # python
 
 [参考链接：python知识点详细](https://github.com/taizilongxu/interview_python#20-%E9%97%AD%E5%8C%85)   
 
 * [python3新特性](#python3新特性)
-* [基础](#基础)
-  * [输入](#输入)
+* [输入](#输入)
 * [变量的作用域](#变量的作用域)
 * [dict按value排序](#dict按value排序)
 * [.format的用法](#.format的用法)
@@ -26,16 +26,14 @@
 * [python彩蛋](#python彩蛋)
 
 <span id="python3新特性"></span>
-## python3新特性
+## [python3新特性](#re_)
 * pathlib模块
 * 格式化字符串变量
 * 统一编码支持中文字符
 * Python 3.5 将支持 Async/Await 异步编程
 
-<span id="基础"></span>
-# 基础
 <span id="输入"></span>
-## 输入
+## [输入](#re_)
 ![1.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/1.PNG)  
 ```py
 M, N = list(map(int, input().split(',')))
@@ -69,7 +67,7 @@ for i in range(n):
 ```
 ---
 
-## 变量的作用域
+## [变量的作用域](#re_)
 * 全局变量
   * 在函数体外定义的变量
 * 局部变量
@@ -115,7 +113,7 @@ change() balance=100
 ```
 
 <span id="dict按value排序"></span>
-## dict按value排序
+## [dict按value排序](#re_)
 ```python
 # 按照value从大到小排序:
 sorted(d.items(), key = lambda x:x[1], reverse = True)
@@ -125,7 +123,7 @@ sorted(d.items(), key = lambda x:x[1], reverse =False)
 ```
 
 <span id=".format的用法"></span>
-## .format的用法
+## [.format的用法](#re_)
 ```python
 d = 'a: {}, b: {}'.format(23, 34)
 print(d)
@@ -136,7 +134,7 @@ a: 23, b: 34
 ```
 
 <span id="np.mat()与np.array()的区别"></span>
-## np.mat()与np.array()的区别
+## [np.mat()与np.array()的区别](#re_)
 [参考链接：np.mat()与np.array()的区别](https://www.jianshu.com/p/3a9c3a397932)
 * np.mat()
   * 矩阵相乘：\* 或者 np.dot()
@@ -146,29 +144,29 @@ a: 23, b: 34
   * 点乘：\* 或者 np.multiply()
 
 <span id="args与kwargs的区别"></span>
-## \*args与\*\*kwargs的区别 
+## [\*args与\*\*kwargs的区别](#re_) 
 [参考链接：\*args与\*\*kwargs的区别](https://www.cnblogs.com/yunguoxiaoqiao/p/7626992.html)
 * \*args：将关键字参数打包成**tuple**给函数体使用  
 * \*\*kwargs：将关键字参数打包成**dict**给函数体使用  
 
 <span id="re.match与re.search的区别"></span>
-## re.match与re.search的区别
+## [re.match与re.search的区别](#re_)
 [参考链接：re.match与re.search的区别](http://www.runoob.com/python3/python3-reg-expressions.html)  
 * re.match：从字符串的起始位置匹配，起始位置匹配不成功就返回None
 * re.search：对整个字符串进行匹配
 
 <span id="extend与append的区别"></span>
-# extend与append的区别
+## [extend与append的区别](#re_)
 [extend与append的区别](https://www.cnblogs.com/tzuxung/p/5706245.html)
 
 <span id="浅拷贝与深拷贝"></span>
-# 浅拷贝与深拷贝
+## [浅拷贝与深拷贝](#re_)
 [参考链接：浅拷贝与深拷贝](https://www.cnblogs.com/xueli/p/4952063.html)  
 * copy浅拷贝：没有拷贝子对象，原始数据改变，子对象也会跟着改变
 * deepcopy深拷贝：拷贝子对象，原始数据改变，子对象不会改变
 
 <span id="迭代器和生成器"></span>
-## 迭代器和生成器
+## [迭代器和生成器](#re_)
 [参考链接：迭代器和生成器](http://www.runoob.com/python3/python3-iterator-generator.html)  
 * 迭代器：一个可以记住遍历的位置的对象。
   * 基本方法：iter() 和 next()  
@@ -176,7 +174,7 @@ a: 23, b: 34
   1. 运行时，每次遇到**yield**时函数会暂停并保存当前所有的运行信息，返回 yield 的值
   2. 在下一次执行next()方法时从当前位置继续运行。
 
-## 装饰器
+## [装饰器](#re_)
 [参考链接:装饰器](https://www.runoob.com/w3cnote/python-func-decorators.html)
 * 概念：修改其他函数功能的函数
 * 简单装饰器
@@ -249,7 +247,7 @@ a: 23, b: 34
      return x + x * x
   ```
 
-## 进程与线程
+## [进程与线程](re_)
 ### 线程
 * **守护线程**
   * 运行前提：主线程必须存在，不存在时守护线程就会被销毁
@@ -358,14 +356,14 @@ a: 23, b: 34
 * 线程不能够独立的执行，需要依存在应用程序中
 
 <span id="打印1-100内的素数"></span>
-## 打印1-100内的素数
+## [打印1-100内的素数](#re_)
 ```python
 # 打印素数
 print(' '.join([str(item) for item in filter(lambda x: not [x % i for i in range(2, x) if x % i == 0], range(2, 101))]))
 ```
 
 <span id="最大公约数"></span>
-## 最大公约数
+## [最大公约数](#re_)
 ```python
 # 获取两个数的最大公约数
 def hcf(x, y):
@@ -388,7 +386,7 @@ if __name__ == '__main__':
 ```
 
 <span id="最小公倍数"></span>
-## 最小公倍数
+## [最小公倍数](#re_)
 ```python
 # 获取两个数的最小公倍数
 def lcm(x, y):
@@ -413,7 +411,7 @@ if __name__ == '__main__':
 ```
 
 <span id="自动补0"></span>
-## 自动补0
+## [自动补0](#re_)
 ```python
 # 字符串
 n = '123'
@@ -428,7 +426,7 @@ s = "%05d" % n
 '''
 ```
 
-## 拍照功能
+## [拍照功能](#re_)
 * 显示画面，按S拍照，按空格退出
 ```python
 '''
@@ -459,7 +457,7 @@ cv2.destroyAllWindows()  # 关闭所有窗口
 ```
 
 <span id="日期处理datetime"></span>
-## [python日期处理datetime](#re_)
+## [日期处理datetime](#re_)
 ```python
 # 时间差
 import datetime as dt
@@ -473,7 +471,7 @@ print('时间差this_gap:', this_gap)
 ```
 
 <span id="生成可执行文件.exe"></span>
-## 生成可执行文件.exe
+## [生成可执行文件.exe](#re_)
 * 依赖pyinstaller  
 `pip install pyinstaller`
 * **生成可执行文件命令**  
@@ -495,7 +493,7 @@ print('时间差this_gap:', this_gap)
   </details>
   
 <span id="python彩蛋"></span>
-## python彩蛋
+## [python彩蛋](#re_)
 ```python
 '''
 author:fangchao
