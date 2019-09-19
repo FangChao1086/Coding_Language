@@ -1,3 +1,4 @@
+<span id="re_"></span>
 # C++
 [参考链接：C++面试知识点详细](https://github.com/huihut/interview)
 
@@ -148,8 +149,8 @@
   ```cpp
   char a[10];  
   char n[] = "abc";   
-  cout<<"char a[10]                 "<<sizeof(a)<<endl;//数组，值为10  
-  cout<<"char n[] = /"abc/"           "<<sizeof(n)<<endl;//字符串数组，将'/0'计算进去，值为4
+  cout<<"char a[10]"<<sizeof(a)<<endl;//数组，值为10  
+  cout<<"char n[] = /"abc/""<<sizeof(n)<<endl;//字符串数组，将'/0'计算进去，值为4
   
   // 作为形参
   void func(char a[3])  
