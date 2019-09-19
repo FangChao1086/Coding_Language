@@ -15,6 +15,7 @@
 * [UDP与TCP](#UDP与TCP)
 * [异步与实现方式](#异步与实现方式)
 * [重载与重写](#重载与重写)
+* [sizeof](#sizeof)
 
 <span id="C++11新特性"></span>
 ## C++11新特性
@@ -109,3 +110,50 @@
 * 重写：对虚函数的重写
 * 重载：同名函数参数表不同
 * 重定义与隐藏：子类对父类的非虚函数再写一遍
+
+<span id="sizeof"></span>
+## [sizeof](#re_)  [用法介绍](https://www.cnblogs.com/huolong-blog/p/7587711.html)
+* 字节数
+  * char 1
+  * int 4
+  * float 4
+  * double 8
+* 结构的sizeof
+  ```cpp
+  struct S2  
+  {  
+    int b;  
+    char a;  
+  };  
+  sizeof(S2);  // 值为8，字节对齐，在char之后会填充3个字节。  
+
+  struct S3  
+  {  
+  };  
+  sizeof(S3);  // 值为1，空结构体也占内存
+  ```
+* 联合体的sizeof
+  ```cpp
+  union u  
+  {  
+      int a;  
+      float b;  
+      double c;  
+      char d;  
+  };  
+
+  sizeof(u);  // 值为8;每个成员sizeof的最大值  
+  ```
+* 数组的sizeof
+  ```cpp
+  char a[10];  
+  char n[] = "abc";   
+  cout<<"char a[10]                 "<<sizeof(a)<<endl;//数组，值为10  
+  cout<<"char n[] = /"abc/"           "<<sizeof(n)<<endl;//字符串数组，将'/0'计算进去，值为4
+  
+  // 作为形参
+  void func(char a[3])  
+  {  
+    int c = sizeof(a); //c = 4，因为这里a不在是数组类型，而是指针，相当于char *a。  
+  }  
+  ```
