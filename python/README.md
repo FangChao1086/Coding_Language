@@ -4,7 +4,7 @@
 [参考链接：python知识点详细](https://github.com/taizilongxu/interview_python#20-%E9%97%AD%E5%8C%85)   
 
 * [python3新特性](#python3新特性)
-* [输入](#输入)
+* [基础知识](#基础知识)
 * [变量的作用域](#变量的作用域)
 * [dict按value排序](#dict按value排序)
 * [.format的用法](#.format的用法)
@@ -19,7 +19,6 @@
 * [打印1-100内的素数](#打印1-100内的素数)
 * [最大公约数](#最大公约数)
 * [最小公倍数](#最小公倍数)
-* [自动补0](#自动补0)
 * [拍照功能](#拍照功能)
 * [日期处理datetime](#日期处理datetime)
 * [生成可执行文件.exe](#生成可执行文件.exe)
@@ -32,40 +31,58 @@
 * 统一编码支持中文字符
 * Python 3.5 将支持 Async/Await 异步编程
 
-<span id="输入"></span>
-## [输入](#re_)
-![1.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/1.PNG)  
-```py
-M, N = list(map(int, input().split(',')))
+<span id="基础知识"></span>
+## [基础知识](#re_)
 
-book = []
-for i in range(M):
-    line = list(map(int, input().split(',')))
-    book.append(line)
-```
----
-![2.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/2.PNG)
-```py
-# 输入处理
-m = int(input())
+* <details><summary>输入数据相关代码</summary>
+    
+    ![1.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/1.PNG)  
+    ```py
+    M, N = list(map(int, input().split(',')))
 
-tmp = []
-for _ in range(m):
-    line = [list(map(int, item.split(','))) for item in input().split(';')]
-    tmp.extend(line)  # 
+    book = []
+    for i in range(M):
+        line = list(map(int, input().split(',')))
+        book.append(line)
+    ```
+    ---
+    ![2.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/2.PNG)
+    ```py
+    # 输入处理
+    m = int(input())
+
+    tmp = []
+    for _ in range(m):
+        line = [list(map(int, item.split(','))) for item in input().split(';')]
+        tmp.extend(line)  # 
+    ```
+    ---
+    ![3.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/3.PNG)
+    ```py
+    # 输入处理
+    n = int(input())
+    x, y = [], []
+    for i in range(n):
+        _x, _y = list(map(int, input().split()))
+        x.append(_x)
+        y.append(_y)
+    ```
+</details>
+
+* 自动补0  
+```python
+# 字符串
+n = '123'
+s = n.zfill(5)
+
+# int
+n = 123
+s = "%05d" % n
+
+'''
+'00123'
+'''
 ```
----
-![3.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/3.PNG)
-```py
-# 输入处理
-n = int(input())
-x, y = [], []
-for i in range(n):
-    _x, _y = list(map(int, input().split()))
-    x.append(_x)
-    y.append(_y)
-```
----
 
 ## [变量的作用域](#re_)
 * 全局变量
@@ -409,22 +426,6 @@ if __name__ == '__main__':
     num2 = int(input('输入第二个数字：'))
 
     print(num1, '和', num2, '的最小公倍数为', lcm(num1, num2))
-```
-
-<span id="自动补0"></span>
-## [自动补0](#re_)
-```python
-# 字符串
-n = '123'
-s = n.zfill(5)
-
-# int
-n = 123
-s = "%05d" % n
-
-'''
-'00123'
-'''
 ```
 
 ## [拍照功能](#re_)
