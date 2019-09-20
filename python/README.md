@@ -16,9 +16,6 @@
 * [迭代器和生成器](#迭代器和生成器)
 * [装饰器](#装饰器)
 * [进程与线程](#进程与线程)
-* [打印1-100内的素数](#打印1-100内的素数)
-* [最大公约数](#最大公约数)
-* [最小公倍数](#最小公倍数)
 * [拍照功能](#拍照功能)
 * [日期处理datetime](#日期处理datetime)
 * [生成可执行文件.exe](#生成可执行文件.exe)
@@ -372,61 +369,6 @@ a: 23, b: 34
 * 一个程序至少有一个进程，一个进程至少有一个线程
 * 进程在执行过程中拥有独立的内存单元，但多个线程共享内存
 * 线程不能够独立的执行，需要依存在应用程序中
-
-<span id="打印1-100内的素数"></span>
-## [打印1-100内的素数](#re_)
-```python
-# 打印素数
-print(' '.join([str(item) for item in filter(lambda x: not [x % i for i in range(2, x) if x % i == 0], range(2, 101))]))
-```
-
-<span id="最大公约数"></span>
-## [最大公约数](#re_)
-```python
-# 获取两个数的最大公约数
-def hcf(x, y):
-    if x < y:
-        smaller = x
-    else:
-        smaller = y
-    for i in range(1, smaller + 1):
-        if (x % i == 0) and (y % i == 0):
-            hcf = i
-
-    return hcf
-
-
-if __name__ == '__main__':
-    num1 = int(input('输入第一个数字：'))
-    num2 = int(input('输入第二个数字：'))
-
-    print(num1, '和', num2, '的最大公约数为', hcf(num1, num2))
-```
-
-<span id="最小公倍数"></span>
-## [最小公倍数](#re_)
-```python
-# 获取两个数的最小公倍数
-def lcm(x, y):
-    if x < y:
-        greater = y
-    else:
-        greater = x
-    while (True):
-        if (greater % x == 0) and (greater % y == 0):
-            lcm = greater
-            break
-        greater += 112
-
-    return lcm
-
-
-if __name__ == '__main__':
-    num1 = int(input('输入第一个数字：'))
-    num2 = int(input('输入第二个数字：'))
-
-    print(num1, '和', num2, '的最小公倍数为', lcm(num1, num2))
-```
 
 ## [拍照功能](#re_)
 * 显示画面，按S拍照，按空格退出
