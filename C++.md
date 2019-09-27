@@ -82,9 +82,16 @@
 
 ## new和malloc
 * malloc/free是标准库函数，new/delete是C++运算符
-* malloc失败返回空，new失败抛异常
+* **malloc失败返回空，new失败抛异常**
 * new/delete会调用构造、析构函数，malloc/free不会，所以他们无法满足动态对象的要求。
 * new返回有类型的指针，malloc返回无类型的指针
+### new/delete的底层实现
+* new
+  * 调用底层全局函数operator new来申请空间
+  * 在申请的空间上执行构造函数，完成对象的构造
+* delete
+  * 在空间上执行析构函数，清理对象中资源
+  * 调用全局函数operator delete来释放对象的空间
 
 <span id="UDP与TCP"></span>
 ## UDP与TCP
