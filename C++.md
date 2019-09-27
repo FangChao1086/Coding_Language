@@ -16,6 +16,7 @@
 * [UDP与TCP](#UDP与TCP)
 * [异步与实现方式](#异步与实现方式)
 * [重载与重写](#重载与重写)
+* [struct和class](#struct和class)
 * [sizeof](#sizeof)
 
 <span id="C++11新特性"></span>
@@ -104,7 +105,6 @@
   * 支持一对一，一对多，多对一和多对多的交互通信（广播通信）
   * 面向报文，没有拥塞控制（实时视频会议）
 
-
 ## [异步与实现方式](#re_)
 * **异步**
   * **当一个异步过程调用发出后，调用者不能立刻得到结果**。实际上处理这个调用的部件在完成后，通过**状态 、通知和回调**来通知调用者
@@ -119,6 +119,46 @@
 * 重载：同名函数参数表不同
 * 多态：同名函数同参数表，类型不同
 * 重定义与隐藏：子类对父类的非虚函数再写一遍
+
+<span id="struct和class"></span>
+## struct和class
+* **默认的继承访问权** 取决于子类，struct：public；class：private；
+  ```cpp
+  struct A
+  {
+   int a;
+  };
+
+  struct B: A   //共有继承
+  {
+   int b;
+  };
+  class C: A    //私有继承
+  {
+   int c
+  };
+  ```
+* **默认的访问权限**
+  ```cpp
+  struct A
+  {
+   int a;
+  };
+  
+  class B
+  {
+   int b;
+  };
+  
+  int main()
+  {
+   A n;
+   n.a = 10;  //可在结构外访问成员变量，所以struct默认是共有的
+   B n1;
+   n1.b = 10;  //在类外无法访问私有变量
+   return 0;
+  }
+  ```
 
 <span id="sizeof"></span>
 ## [sizeof](#re_)  [用法介绍](https://www.cnblogs.com/huolong-blog/p/7587711.html)
