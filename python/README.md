@@ -113,6 +113,24 @@ print("插入后的列表为：" + str(list_test))
 插入后的列表为：[7, 6, 9, 8, 3, 4, 5]
 """
 ```
+* 推导式
+```py
+# 普通推导式
+list_test = [pow(i, 2) for i in range(1, 11)]
+print("生成平方数（1-10）：", list_test)
+
+# 二维推导式
+list_test0 = {j for i in range(2, 20) for j in range(i * i, 20, i)}
+print("2-19所有的合数", list_test0)
+list_test1 = [i for i in range(2, 20) if i not in list_test0]
+print("2-19所有的质数", list_test1)
+
+"""
+生成平方数（1-10）： [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+2-19所有的合数 {4, 6, 8, 9, 10, 12, 14, 15, 16, 18}
+2-19所有的质数 [2, 3, 5, 7, 11, 13, 17, 19]
+"""
+```
 
 ## [变量的作用域](#re_)
 * 全局变量
