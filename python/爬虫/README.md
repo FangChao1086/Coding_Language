@@ -14,3 +14,4 @@ print(r.status_code)
 200
 """
 ```
+<div align=center><src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/Response对象.jpg"></div>
