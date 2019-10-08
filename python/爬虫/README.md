@@ -15,3 +15,5 @@ print(r.status_code)
 """
 ```
 <div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/Response对象.JPG"></div>
+
+<div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/Requests库的异常.JPG"></div>
