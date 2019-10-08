@@ -33,7 +33,7 @@
 
 * <details><summary>输入数据相关代码</summary>
     
-    ![1.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/1.PNG)  
+    ![1.png](https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/1.PNG)  
     ```py
     M, N = list(map(int, input().split(',')))
 
@@ -43,7 +43,7 @@
         book.append(line)
     ```
     ---
-    ![2.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/2.PNG)
+    ![2.png](https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/2.PNG)
     ```py
     # 输入处理
     m = int(input())
@@ -54,7 +54,7 @@
         tmp.extend(line)  # 
     ```
     ---
-    ![3.png](https://github.com/FangChao1086/Coding_language/blob/master/素材/3.PNG)
+    ![3.png](https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/3.PNG)
     ```py
     # 输入处理
     n = int(input())
