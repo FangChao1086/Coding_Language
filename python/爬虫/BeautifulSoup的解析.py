@@ -8,6 +8,7 @@ content:Beautiful Soup4的解析
 import requests
 from bs4 import BeautifulSoup
 
+# 简单解析
 r = requests.get("http://python123.io/ws/demo.html")
 demo = r.text
 soup = BeautifulSoup(demo, "html.parser")
@@ -46,4 +47,14 @@ for link in soup.find_all('a'):
 """
 http://www.icourse163.org/course/BIT-268001
 http://www.icourse163.org/course/BIT-1001870001
+"""
+
+# 查找以b开头的标签
+import re
+
+for tag in soup.find_all(re.compile('b')):
+    print(tag.name)
+"""
+body
+b
 """
