@@ -24,7 +24,7 @@ print(r.status_code)
 <div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/Requests库的异常.JPG"></div>
 
 <span id="BeautifulSoup"></span>
-## BeautifulSoup
+## BeautifulSoup  [解析代码](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/BeautifulSoup的解析.py)
 * 解析  
 <div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/BeautifulSoup.jpg"></div>  
 
@@ -32,7 +32,7 @@ print(r.status_code)
 <div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/标签树的遍历.jpg"></div>  
 
 <span id="示例"></span>
-## 示例 [详细](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/示例)
+## 示例 [详细代码](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/示例)
 * 1.京东商品页面_简单获取页面
 * 2.亚马逊商品页面_修改User-Agent
 * 3.百度搜索关键词提交
