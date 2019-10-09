@@ -25,8 +25,10 @@ print(r.status_code)
 
 <span id="BeautifulSoup"></span>
 ## BeautifulSoup
-<div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/BeautifulSoup.jpg"></div>
+* 解析  
+<div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/BeautifulSoup.jpg"></div>  
 
+* 内容遍历：下行，上行，平行
 
 <span id="示例"></span>
 ## 示例 [详细](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/示例)
