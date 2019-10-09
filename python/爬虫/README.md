@@ -38,3 +38,4 @@ print(r.status_code)
 * 3.百度搜索关键词提交
 * 4.网络图片的爬取与存储
 * 5.ip地址归属地自动查询
+* [中国大学排名定向爬虫](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/示例/中国大学排名定向爬虫.py)
