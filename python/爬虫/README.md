@@ -53,7 +53,7 @@ ip地址匹配：
 
 <span id="Scrapy"></span>
 ## Scrapy
-<div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/scrapy爬虫框架.jpg"></div>
+<div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/scrapy爬虫框架结构.jpg"></div>
 
 <span id="示例"></span>
 ## 示例 [详细代码](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/示例)
