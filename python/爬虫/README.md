@@ -3,6 +3,7 @@
 * [request库](#request库)
 * [BeautifulSoup](#BeautifulSoup)
 * [正则表达式](#正则表达式)
+* [Scrapy](#Scrapy)
 * [示例](#示例)
 * [视频教程](https://www.bilibili.com/video/av9784617?from=search&seid=9025437944886247756)
 
@@ -49,6 +50,10 @@ print(r.status_code)
 ip地址匹配：
 (([1-9]?\d|1\d{2}|2[0-4]\d|25[0-5]).){3}([1-9]?\d|1\d{2}|2[0-4]\d|25[0-5])
 ```
+
+<span id="Scrapy"></span>
+## Scrapy
+<div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/scrapy爬虫框架.jpg"></div>
 
 <span id="示例"></span>
 ## 示例 [详细代码](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/示例)
