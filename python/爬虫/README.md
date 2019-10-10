@@ -36,6 +36,19 @@ print(r.status_code)
 ## 正则表达式
 <div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/正则表达式.png"></div>  
 
+### 特殊
+```
+^[A-Za-z]+$          由26个字母组成的字符串
+^[A-Za-z0-9]+$       由26个字母和数字组成的字符串
+^-?\d+$              整数形式的字符串
+^[0-9]*[1-9][0-9]*$  正整数形式的字符串
+[1-9]\d{5}           中国境内邮政编码，6位
+[\u4e00-\u9fa5]      匹配中文字符
+
+ip地址匹配：
+(([1-9]?\d|1\d{2}|2[0-4]\d|25[0-5]).){3}([1-9]?\d|1\d{2}|2[0-4]\d|25[0-5])
+```
+
 <span id="示例"></span>
 ## 示例 [详细代码](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/示例)
 * 1.京东商品页面_简单获取页面
