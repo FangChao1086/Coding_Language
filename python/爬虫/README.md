@@ -25,8 +25,8 @@ print(r.status_code)
 <div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/Requests库的异常.JPG"></div>
 
 <span id="BeautifulSoup"></span>
-## BeautifulSoup  [解析代码](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/BeautifulSoup的解析.py)
-* 解析  
+## BeautifulSoup  [官网地址](https://beautifulsoup.readthedocs.io/zh_CN/latest/)  
+* [解析代码](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/BeautifulSoup的解析.py)
 <div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/BeautifulSoup.jpg"></div>  
 
 * 内容遍历：下行，上行，平行（平行发生在同一个父亲节点下的各节点间）
