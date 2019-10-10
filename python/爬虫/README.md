@@ -53,7 +53,23 @@ ip地址匹配：
 
 <span id="Scrapy"></span>
 ## Scrapy
-<div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/scrapy爬虫框架结构.jpg"></div>
+<div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/scrapy爬虫框架结构.jpg"></div>  
+
+### scrapy的使用
+```
+1. 通过命令创建项目
+scrapy startproject 项目名称
+scrapy startproject python123demo
+
+2. 用pycharm打开项目
+cd python123demo
+
+3. 通过命令创建爬虫
+scrapy genspider 爬虫名称 域名
+scrapy genspider demo python123.io
+
+4. 修改demo文件
+```
 
 <span id="示例"></span>
 ## 示例 [详细代码](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/示例)
