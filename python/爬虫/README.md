@@ -4,6 +4,7 @@
 * [BeautifulSoup](#BeautifulSoup)
 * [正则表达式](#正则表达式)
 * [示例](#示例)
+* [视频教程](https://www.bilibili.com/video/av9784617?from=search&seid=9025437944886247756)
 
 <span id="request库"></span>
 ## request库  [官网地址](http://cn.python-requests.org/zh_CN/latest/)
