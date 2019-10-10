@@ -2,6 +2,7 @@
 
 * [request库](#request库)
 * [BeautifulSoup](#BeautifulSoup)
+* [正则表达式](#正则表达式)
 * [示例](#示例)
 
 <span id="request库"></span>
@@ -30,6 +31,10 @@ print(r.status_code)
 
 * 内容遍历：下行，上行，平行（平行发生在同一个父亲节点下的各节点间）
 <div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/标签树的遍历.jpg"></div>  
+
+<span id="正则表达式"></span>
+## 正则表达式
+<div align=center><img src="https://github.com/FangChao1086/Coding_language/blob/master/依赖文件/正则表达式.png"></div>  
 
 <span id="示例"></span>
 ## 示例 [详细代码](https://github.com/FangChao1086/coding_language/tree/master/python/爬虫/示例)
