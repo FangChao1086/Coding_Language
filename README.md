@@ -14,6 +14,10 @@ ls -ld /etc
 硬链接：相当于复制，但是可以同步更新，
        源文件丢失后，硬链接还是可以访问
 ```
-
+```
+linux的匹配
+*    任意字符
+？   单个字符
+```
 ![Linux常用命令](https://i.ibb.co/ggS8BHD/Linux.jpg)
 ![Linux常用命令2](https://i.ibb.co/26Kk46Q/Linux-2.jpg)
