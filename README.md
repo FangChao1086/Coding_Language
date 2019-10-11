@@ -21,5 +21,9 @@ linux的匹配
 *    任意字符
 ？   单个字符
 ```
+```
+搜索大于100M的文件;1kb=2个数据块，1M=1024KB
+find / -size +204800
+```
 ![Linux常用命令](https://i.ibb.co/ggS8BHD/Linux.jpg)
 ![Linux常用命令2](https://i.ibb.co/26Kk46Q/Linux-2.jpg)
