@@ -4,5 +4,11 @@
 * [mysql常用命令](https://mp.weixin.qq.com/s/wUCVeYLxx5JL2Xy-XJNvNQ)  
 * Linux常用命令   
 [Linux命令搜索](https://wangchujiang.com/linux-command/)  
+
+```
+查看目录的详细信息
+ls -ld /etc
+```
+
 ![Linux常用命令](https://i.ibb.co/ggS8BHD/Linux.jpg)
 ![Linux常用命令2](https://i.ibb.co/26Kk46Q/Linux-2.jpg)
