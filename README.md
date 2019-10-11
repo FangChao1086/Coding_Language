@@ -26,7 +26,7 @@ linux的匹配
 大于100M的文件;1kb=2个数据块，1M=1024KB
 find / -size +204800
 
-补充：locate命令，新建的需要updatedb命令更新
+补充：locate命令，新建的需要updatedb命令更新，/tmp下的文件找不到
 ```
 ![Linux常用命令](https://i.ibb.co/ggS8BHD/Linux.jpg)
 ![Linux常用命令2](https://i.ibb.co/26Kk46Q/Linux-2.jpg)
