@@ -8,5 +8,11 @@
 查看目录的详细信息-d
 ls -ld /etc
 ```
+```
+链接
+软链接：相当于快捷方式
+硬链接：相当于复制，但是可以同步更新
+```
+
 ![Linux常用命令](https://i.ibb.co/ggS8BHD/Linux.jpg)
 ![Linux常用命令2](https://i.ibb.co/26Kk46Q/Linux-2.jpg)
