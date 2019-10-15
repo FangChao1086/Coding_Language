@@ -34,7 +34,9 @@ locate命令，新建的需要updatedb命令更新，/tmp下的文件找不到
 
 ```
 帮助命令：
-man(例：man ls)
+man(例：man ls)；
+搜索特定的字符所在位置：/+字符（例：/-a）;
+翻页：按键n
 ```
 
 ![Linux常用命令](https://i.ibb.co/ggS8BHD/Linux.jpg)
