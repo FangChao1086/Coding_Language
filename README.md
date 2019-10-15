@@ -40,5 +40,10 @@ man(例：man ls)；
 翻页：按键n
 ```
 
+```
+用户管理
+useradd;passwd;who;w
+```
+
 ![Linux常用命令](https://i.ibb.co/ggS8BHD/Linux.jpg)
 ![Linux常用命令2](https://i.ibb.co/26Kk46Q/Linux-2.jpg)
