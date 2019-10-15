@@ -8,6 +8,7 @@
   * 文件搜索
   * 帮助命令
   * 用户管理
+  * 解压命令
 ```
 查看目录的详细信息-d
 ls -ld /etc
@@ -43,6 +44,15 @@ man(例：man ls)；
 ```
 用户管理
 useradd;passwd;who;w
+```
+
+```
+解压命令
+tar参数详细信息：
+    -x 解包  -c 压包
+    -v 显示详细信息
+    -f 指定解压文件
+    -z 解压缩
 ```
 
 ![Linux常用命令](https://i.ibb.co/ggS8BHD/Linux.jpg)
