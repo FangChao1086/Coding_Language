@@ -6,6 +6,7 @@
   * 文件处理
   * 权限管理
   * 文件搜索
+  * 帮助命令
 ```
 查看目录的详细信息-d
 ls -ld /etc
@@ -30,5 +31,11 @@ find / -size +204800
 locate命令，新建的需要updatedb命令更新，/tmp下的文件找不到
 查找命令的位置：which (例：which cp)
 ```
+
+```
+帮助命令：
+man(例：man ls)
+```
+
 ![Linux常用命令](https://i.ibb.co/ggS8BHD/Linux.jpg)
 ![Linux常用命令2](https://i.ibb.co/26Kk46Q/Linux-2.jpg)
