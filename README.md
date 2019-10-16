@@ -9,6 +9,7 @@
   * 帮助命令
   * 用户管理
   * 解压命令
+* [shell](#shell)
 ```
 查看目录的详细信息-d
 ls -ld /etc
@@ -59,6 +60,11 @@ tar参数详细信息：
 用户切换
 su - root  -表示连带环境一起切换，最好不要省略
 ```
+
+<span id="shell"></span>
+## shell
+* echo
+  * `echo -e "a\tb\tc"`
 
 ![Linux常用命令](https://i.ibb.co/ggS8BHD/Linux.jpg)
 ![Linux常用命令2](https://i.ibb.co/26Kk46Q/Linux-2.jpg)
