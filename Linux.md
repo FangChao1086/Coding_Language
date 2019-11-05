@@ -5,9 +5,9 @@
 * 帮助命令
 * 用户管理
 * 解压命令
-  
-  
-### [shell](#shell)
+
+* [shell](#shell)
+
 ```
 查看目录的详细信息-d
 ls -ld /etc
