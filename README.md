@@ -5,3 +5,4 @@
   * [命令搜索](https://wangchujiang.com/linux-command/)  
 * [mysql常用命令](https://mp.weixin.qq.com/s/wUCVeYLxx5JL2Xy-XJNvNQ)  
 * [数据结构](https://github.com/FangChao1086/Interview/blob/master/数据结构.md)
+* [设计模式](https://github.com/FangChao1086/Interview/blob/master/设计模式.md)
