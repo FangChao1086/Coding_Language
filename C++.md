@@ -176,7 +176,7 @@
   * 子类可访问父类中的 protected 成员
 
 <span id="struct和class"></span>
-## [struct和class](back)
+## [struct和class](#back)
 struct 默认继承权限和默认访问权限是 public  
 class 默认继承权限和默认访问权限是 private  
 * **默认的继承访问权** 取决于子类，struct：public；class：private；
