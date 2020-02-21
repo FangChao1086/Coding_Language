@@ -12,7 +12,7 @@
 * [static关键字](#static关键字)
 * [虚函数和纯虚函数](#虚函数和纯虚函数)
 * [抽象类与接口](#抽象类与接口)
-* [new/delete和malloc/free](#new/delete和malloc/free)
+* [new/delete和malloc/free](#new和malloc)
 * [UDP与TCP](#UDP与TCP)
 * [异步与实现方式](#异步与实现方式)
 * [重载与重写](#重载与重写)
@@ -110,6 +110,7 @@
   * **接口中只能有抽象方法，即没有具体实现的方法**
   * 接口可以继承多个接口，不能继承或实现抽象类
 
+<span id="new和malloc"></span>
 ## [new/delete和malloc/free](#re_)
 * **new/delete是C++的关键字，malloc/free是c语言的库函数**
 * **new/delete会调用构造、析构函数，malloc/free不会**，所以他们无法满足动态对象的要求
