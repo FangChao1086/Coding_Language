@@ -12,7 +12,7 @@
 * [static关键字](#static关键字)
 * [虚函数和纯虚函数](#虚函数和纯虚函数)
 * [抽象类与接口](#抽象类与接口)
-* [new/delete和malloc/free](#new和malloc)
+* [new/delete和malloc/free](#new/delete和malloc/free)
 * [UDP与TCP](#UDP与TCP)
 * [异步与实现方式](#异步与实现方式)
 * [重载与重写](#重载与重写)
