@@ -33,7 +33,7 @@
 
 <span id="B树与B+详解"></span>
 ## B树与B+详解 
-目的：降低树的深度，提高查找效率  
+**B+树使用的目的：降低树的深度，提高查找效率**  
 [参考链接：B树与B+详解](https://www.cnblogs.com/guohai-stronger/p/9225057.html)
 ### B树（B-树）
 <div align=center><img src="https://github.com/FangChao1086/Interview/blob/master/依赖文件/b树.jpg"></div>  
