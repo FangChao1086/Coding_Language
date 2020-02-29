@@ -249,16 +249,16 @@ OSI 7层模型
 * 三次握手
   * C->SYN0->S
     * 客户端发送syn包(syn=x)到服务器，并进入SYN_SEND状态，等待服务器确认
-  * S->SYN1,ACK(SYN0+1)>C
+  * C<-SYN1,ACK(SYN0+1)<-S
     * 服务器收到syn包，必须确认客户的syn(ack = x + 1), 同时自己也发送一个syn包（syn=y）,即SYN+ACK包，此时服务器进入SYN_RECV状态
   * C->ACK(SYN1+1)->S
     * 客户端收到服务器的 SYN + ACK 包，向服务器发送确认包ACK(ACK = y + 1),此包发送完毕，客户端和服务器进入 ESTABLISHED 状态
 * 四次挥手
   * C->FIN->S
     * 主动关闭方，发送FIN，告诉被动方自己不会再发数据了
-  * S->ACK->C
+  * C<-ACK<-S
     * 被动方收到 FIN 包，发送 ACK (收到序列号 + 1)确认
-  * S->FIN->C
+  * C<-FIN<-S
     * 被动方发送一个 FIN 包，告诉主动方我也不会再给你发送数据了
   * C->ACK->S
     * 主动方收到 FIN 后，发送一个 ACK (收到序列号 + 1)给被动方，至此完成四次挥手
