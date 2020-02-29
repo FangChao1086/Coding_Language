@@ -24,12 +24,12 @@
 * 每个红节点的两个子节点都是黑色的
 * 从任一节点到其每个叶子节点的所有路径都包含相同数目的黑色节点
 ### 红黑树的旋转
-* 左旋
-  * 对某个节点x做右旋，假设其右孩子为y。旋转后，y成为新的子树根节点，x成为y的左孩子，y的左孩子成为x的右孩子
+* **左旋** 逆时针旋转
+  * 对某个节点x做左旋，假设其右孩子为y。旋转后，y成为新的子树根节点，x成为y的左孩子，y的左孩子成为x的右孩子
 <div align=center><img src="https://github.com/FangChao1086/Interview/blob/master/依赖文件/左旋.png"></div>
 
-* 右旋
-  * 对某个节点x做左旋，假设其左孩子为y。旋转后，y成为新的子树根节点，x成为y的右孩子，y的右孩子成为x的左孩子
+* **右旋** 顺时针旋转
+  * 对某个节点x做右旋，假设其左孩子为y。旋转后，y成为新的子树根节点，x成为y的右孩子，y的右孩子成为x的左孩子
 <div align=center><img src="https://github.com/FangChao1086/Interview/blob/master/依赖文件/右旋.png"></div>
 
 <span id="B树与B+详解"></span>
