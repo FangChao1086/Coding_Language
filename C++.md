@@ -20,6 +20,7 @@
 * [异步与实现方式](#异步与实现方式)
 * [重载与重写](#重载与重写)
 * [类成员的访问权限](#类成员的访问权限)
+* [友元函数](#友元函数)
 * [struct和class](#struct和class)
 * [sizeof](#sizeof)
 
@@ -272,6 +273,43 @@ int* const function7();     // 返回一个指向变量的常指针（自身是�
 * 类外：通过对象访问成员
   * 父类对象实例可访问 public 成员，禁止访问 protected 和 private 成员
   * 子类可访问父类中的 protected 成员
+
+## [友元函数](#back)
+* 定义在类外部，但有权访问类的所有私有成员和保护成员
+```cpp
+#include <iostream>
+ 
+using namespace std;
+ 
+class Box
+{
+   double width;
+public:
+   friend void printWidth(Box box);
+   void setWidth(double wid);
+};
+ 
+// 成员函数定义
+void Box::setWidth(double wid)
+{
+    width = wid;
+} 
+// 请注意：printWidth() 不是任何类的成员函数
+void printWidth(Box box)
+{
+   /* 因为 printWidth() 是 Box 的友元，它可以直接访问该类的任何成员 */
+   cout << "Width of box : " << box.width <<endl;
+}
+ 
+// 程序的主函数
+int main( )
+{
+   Box box;
+   box.setWidth(10.0);  // 使用成员函数设置宽度
+   printWidth(box);  // 使用友元函数输出宽度
+   return 0;
+}
+```
 
 <span id="struct和class"></span>
 ## [struct和class](#back)
