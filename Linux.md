@@ -34,6 +34,9 @@ linux的匹配
 大于100M的文件;1kb=2个数据块，1M=1024KB
 find / -size +204800
 
+搜索名为a的文件
+find / -name a
+
 补充：
 locate命令，新建的需要updatedb命令更新，/tmp下的文件找不到
 查找命令的位置：which (例：which cp)
