@@ -18,6 +18,7 @@
 * [volatile](#volatile)  
 * [虚函数和纯虚函数](#虚函数和纯虚函数)
 * [C++多态](#C++多态)
+* [指针与引用](#指针与引用)
 * [new/delete和malloc/free](#new和malloc)
 * [异步与实现方式](#异步与实现方式)
 * [重载与重写](#重载与重写)
@@ -250,6 +251,124 @@ int* const function7();     // 返回一个指向变量的常指针（自身是�
   * 动态多态实现的条件
     * 虚函数
     * 一个基类的指针或引用指向派生类的对象
+
+<span id="指针与引用"></span>
+## [指针与引用](#back)
+### 指针
+& ：每一个变量都有一个内存位置，内存位置定义了可使用&访问的地址
+```cpp
+#include <iostream>
+using namespace std;
+int main ()
+{
+   int  var1;
+   char var2[10];
+   cout << "var1 变量的地址： ";
+   cout << &var1 << endl;
+   cout << "var2 变量的地址： ";
+   cout << &var2 << endl;
+   return 0;
+}
+
+// var1 变量的地址： 0xbfebd5c0
+// var2 变量的地址： 0xbfebd5b6
+```
+指针：一个变量，其值是另一个变量的地址；`a`: 表示地址，`*a`: 表示地址中的值
+```cpp
+#include <iostream>
+using namespace std;
+int main ()
+{
+   int  var = 20;   // 实际变量的声明
+   int  *ip;        // 指针变量的声明
+   ip = &var;       // 在指针变量中存储 var 的地址
+   cout << "Value of var variable: ";
+   cout << var << endl;
+   // 输出在指针变量中存储的地址
+   cout << "Address stored in ip variable: ";
+   cout << ip << endl;
+   // 访问指针中地址的值
+   cout << "Value of *ip variable: ";
+   cout << *ip << endl;
+   return 0;
+}
+
+// Value of var variable: 20
+// Address stored in ip variable: 0xbfc601ac
+// Value of *ip variable: 20
+```
+#### 空指针
+NULL指针表示值为0的常量
+```cpp
+#include <iostream>
+using namespace std;
+int main ()
+{
+   int  *ptr = NULL;
+   cout << "ptr 的值是 " << ptr ;
+   return 0;
+}
+
+// ptr 的值是 0
+```
+#### 指针的加减
+```cpp
+#include <iostream>
+using namespace std;
+const int MAX = 3;
+int main ()
+{
+   int  var[MAX] = {10, 100, 200};
+   int  *ptr;
+   // 指针中的数组地址
+   ptr = var;
+   for (int i = 0; i < MAX; i++)
+   {
+      cout << "Address of var[" << i << "] = ";
+      cout << ptr << endl;
+      cout << "Value of var[" << i << "] = ";
+      cout << *ptr << endl;
+      // 移动到下一个位置
+      ptr++;
+   }
+   return 0;
+}
+
+// Address of var[0] = 0xbfa088b0
+// Value of var[0] = 10
+// Address of var[1] = 0xbfa088b4
+// Value of var[1] = 100
+// Address of var[2] = 0xbfa088b8
+// Value of var[2] = 200
+```
+
+### 引用：创建时就需要初始化
+& 读作引用
+```cpp
+#include <iostream>
+using namespace std;
+int main ()
+{
+   // 声明简单的变量
+   int    i;
+   double d;
+   // 声明引用变量
+   int&    r = i;
+   double& s = d;
+   i = 5;
+   cout << "Value of i : " << i << endl;
+   cout << "Value of i reference : " << r  << endl;
+   d = 11.7;
+   cout << "Value of d : " << d << endl;
+   cout << "Value of d reference : " << s  << endl;
+   return 0;
+}
+
+// Value of i : 5
+// Value of i reference : 5
+// Value of d : 11.7
+// Value of d reference : 11.7
+```
 
 <span id="new和malloc"></span>
 ## [new/delete和malloc/free](#back)
